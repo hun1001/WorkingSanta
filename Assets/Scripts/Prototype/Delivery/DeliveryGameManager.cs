@@ -60,7 +60,7 @@ namespace Delivery_Prototype
             };
             foreach (var targetHome in _targetHomes)
             {
-                _textFloorListContent.text += $"{targetHome.Key}0{GetIntDirection(targetHome.Value)}호\n";
+                _textFloorListContent.text += $"{targetHome.Key}0{(int)targetHome.Value}호\n";
             }
 
             openFloorList();
@@ -208,11 +208,6 @@ namespace Delivery_Prototype
             {
                 StartCoroutine(moveToNextFloor());
             }
-        }
-
-        private int GetIntDirection(Direction direction)
-        {
-            return (direction == Direction.Left) ? 1 : 2;
         }
     }
 }
