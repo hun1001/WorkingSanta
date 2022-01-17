@@ -12,7 +12,7 @@ namespace Prototype_Main
             ButtonManager.Instance.AddHandler(this);
         }
 
-        private void onDeliveryStart()
+        private void OnDeliveryStart()
         {
             Debug.Log("Delivery Start");
         }

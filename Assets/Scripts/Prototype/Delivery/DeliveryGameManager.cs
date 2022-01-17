@@ -52,10 +52,10 @@ namespace Delivery_Prototype
                 {5, Direction.Left}
             };
             _resultStat = new ResultStat();
-            _buttonCloseFloorList.onClick.AddListener(() => closeFloorList());
+            _buttonCloseFloorList.onClick.AddListener(() => CloseFloorList());
 
-            _buttonDropLeft.onClick.AddListener(() => dropItem(Direction.Left));
-            _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
+            _buttonDropLeft.onClick.AddListener(() => DropItem(Direction.Left));
+            _buttonDropRight.onClick.AddListener(() => DropItem(Direction.Right));
 
             _textFloorListContent.text = "";
 
@@ -64,14 +64,14 @@ namespace Delivery_Prototype
                 _textFloorListContent.text += $"{targetHome.Key}0{(int)targetHome.Value}호\n";
             }
 
-            openFloorList();
+            OpenFloorList();
         }
 
         private void Start()
         {
             currentFloor = 1;
             targetFloor = topFloor;
-            updateUI();
+            UpdateUI();
             StartCoroutine(MoveElevator());
         }
 
@@ -81,33 +81,33 @@ namespace Delivery_Prototype
             {
                 if (_canvasGroupFloorList.alpha == 0)
                 {
-                    openFloorList();
+                    OpenFloorList();
                 }
                 else
                 {
-                    closeFloorList();
+                    CloseFloorList();
                 }
             }
         }
 
-        private void updateUI()
+        private void UpdateUI()
         {
             _textFloor.text = currentFloor.ToString();
         }
 
-        private void closeFloorList()
+        private void CloseFloorList()
         {
             _canvasGroupFloorList.alpha = 0;
             _canvasGroupFloorList.blocksRaycasts = false;
         }
 
-        private void openFloorList()
+        private void OpenFloorList()
         {
             _canvasGroupFloorList.alpha = 1;
             _canvasGroupFloorList.blocksRaycasts = true;
         }
 
-        private IEnumerator openElevatorDoor()
+        private IEnumerator OpenElevatorDoor()
         {
             _rectTransformElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
             _rectTransformElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
@@ -125,13 +125,13 @@ namespace Delivery_Prototype
                 // 랜덤 일반인 이벤트
                 Debug.Log("일반인 이벤트");
                 yield return new WaitForSeconds(3f);
-                StartCoroutine(closeElevatorDoor());
+                StartCoroutine(CloseElevatorDoor());
                 yield return new WaitForSeconds(3f);
                 StartCoroutine(MoveElevator());
             }
         }
 
-        private void dropItem(Direction direction)
+        private void DropItem(Direction direction)
         {
             if (!elevatorDoorOpen)
             {
@@ -176,7 +176,7 @@ namespace Delivery_Prototype
             }
         }
 
-        private IEnumerator closeElevatorDoor()
+        private IEnumerator CloseElevatorDoor()
         {
             elevatorDoorOpen = false;
             _rectTransformElevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
@@ -192,17 +192,17 @@ namespace Delivery_Prototype
 
             currentFloor++;
 
-            updateUI();
+            UpdateUI();
 
             if (_targetHomes.ContainsKey(currentFloor))
             {
-                StartCoroutine(openElevatorDoor());
+                StartCoroutine(OpenElevatorDoor());
                 yield break;
             }
 
             if (UnityEngine.Random.Range(0, 100) < 30)
             {
-                StartCoroutine(openElevatorDoor());
+                StartCoroutine(OpenElevatorDoor());
                 yield break;
             }
 
