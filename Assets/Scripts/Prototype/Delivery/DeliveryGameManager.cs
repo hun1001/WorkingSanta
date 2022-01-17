@@ -11,27 +11,20 @@ namespace Delivery_Prototype
     {
         enum Direction
         {
-            Left,
+            Left = 1,
             Right
         }
 
-        [Serializable]
-        class HomeElement
-        {
-            public int Floor;
-            public Direction Direction;
 
-            public int GetIntDirection()
-            {
-                if (Direction == Direction.Left)
-                    return 1;
-                else
-                    return 2;
-            }
+        class ResultStat
+        {
+            public int total;
+            public List<int> successFloorList;
+            public List<int> failFloorList;
         }
 
+
         [SerializeField] int topFloor = 30;
-        [SerializeField] HomeElement[] _targetHomes;
         [SerializeField] Text _textFloor;
 
         [SerializeField] Text _textFloorListContent;
@@ -44,8 +37,11 @@ namespace Delivery_Prototype
         [SerializeField] Button _buttonDropLeft;
         [SerializeField] Button _buttonDropRight;
 
+        private Dictionary<int, Direction> _targetHomes;
+        private ResultStat _resultStat;
         private int currentFloor = 1;
         private int targetFloor = 1;
+        private int score = 0;
         private bool firstClose = true;
         private bool elevatorDoorOpen = false;
 
@@ -57,9 +53,14 @@ namespace Delivery_Prototype
             _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
 
             _textFloorListContent.text = "";
-            foreach (HomeElement targetHome in _targetHomes)
+            _resultStat = new ResultStat();
+            _targetHomes = new Dictionary<int, Direction>(){
+                {2, Direction.Left},
+                {5, Direction.Left}
+            };
+            foreach (var targetHome in _targetHomes)
             {
-                _textFloorListContent.text += $"{targetHome.Floor}{targetHome.GetIntDirection().ToString("00")}호\n";
+                _textFloorListContent.text += $"{targetHome.Key}0{GetIntDirection(targetHome.Value)}호\n";
             }
 
             openFloorList();
@@ -116,6 +117,7 @@ namespace Delivery_Prototype
             if (currentFloor == targetFloor)
             {
                 // 배달 임무
+
             }
             else
             {
@@ -130,13 +132,40 @@ namespace Delivery_Prototype
 
         private void dropItem(Direction direction)
         {
+            if (!elevatorDoorOpen)
+            {
+                return;
+            }
+
             if (direction == Direction.Left)
             {
-                
+                if (_targetHomes[currentFloor] == Direction.Left)
+                {
+                    // 배달 성공
+                    score += 100;
+                    _resultStat.successFloorList.Add(currentFloor);
+                }
+                else
+                {
+                    // 배달 실패
+                    score -= 100;
+                    _resultStat.failFloorList.Add(currentFloor);
+                }
             }
             else
             {
-                
+                if (_targetHomes[currentFloor] == Direction.Right)
+                {
+                    // 배달 성공
+                    score += 100;
+                    _resultStat.successFloorList.Add(currentFloor);
+                }
+                else
+                {
+                    // 배달 실패
+                    score -= 100;
+                    _resultStat.failFloorList.Add(currentFloor);
+                }
             }
         }
 
@@ -179,6 +208,11 @@ namespace Delivery_Prototype
             {
                 StartCoroutine(moveToNextFloor());
             }
+        }
+
+        private int GetIntDirection(Direction direction)
+        {
+            return (direction == Direction.Left) ? 1 : 2;
         }
     }
 }
