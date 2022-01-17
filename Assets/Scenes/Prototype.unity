@@ -521,7 +521,6 @@ GameObject:
   - component: {fileID: 1092994377}
   - component: {fileID: 1092994376}
   - component: {fileID: 1092994375}
-  - component: {fileID: 1092994374}
   m_Layer: 5
   m_Name: DoorPanel
   m_TagString: Untagged
@@ -550,25 +549,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 1350, y: 2800}
   m_Pivot: {x: 0.5, y: 0}
---- !u!95 &1092994374
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092994372}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df1b54b0967198a45a0caf3f34c03261, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1092994375
 MonoBehaviour:
   m_ObjectHideFlags: 0
