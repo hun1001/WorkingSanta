@@ -120,6 +120,10 @@ namespace Delivery_Prototype
             else
             {
                 // 랜덤 일반인 이벤트
+                Debug.Log("일반인 이벤트");
+                yield return new WaitForSeconds(3f);
+                StartCoroutine(closeElevatorDoor());
+                yield return new WaitForSeconds(3f);
                 StartCoroutine(moveToNextFloor());
             }
         }
@@ -163,13 +167,13 @@ namespace Delivery_Prototype
 
             if (UnityEngine.Random.Range(0, 100) < 50)
             {
-                openElevatorDoor();
+                StartCoroutine(openElevatorDoor());
                 yield break;
             }
 
             if (currentFloor == targetFloor)
             {
-                openElevatorDoor();
+                StartCoroutine(openElevatorDoor());
             }
             else
             {
