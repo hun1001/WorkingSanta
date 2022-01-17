@@ -15,13 +15,23 @@ namespace Delivery_Prototype
             Right
         }
 
-        public int CurrentFloor
+        [Serializable]
+        class HomeElement
         {
-            get { return currentFloor; }
+            public int Floor;
+            public Direction Direction;
+
+            public int GetIntDirection()
+            {
+                if (Direction == Direction.Left)
+                    return 1;
+                else
+                    return 2;
+            }
         }
 
         [SerializeField] int topFloor = 30;
-        [SerializeField] int[] _targetHomes;
+        [SerializeField] HomeElement[] _targetHomes;
         [SerializeField] Text _textFloor;
 
         [SerializeField] Text _textFloorListContent;
@@ -47,9 +57,9 @@ namespace Delivery_Prototype
             _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
 
             _textFloorListContent.text = "";
-            foreach (int targetHome in _targetHomes)
+            foreach (HomeElement targetHome in _targetHomes)
             {
-                _textFloorListContent.text += $"{targetHome}호\n";
+                _textFloorListContent.text += $"{targetHome.Floor}{targetHome.GetIntDirection().ToString("00")}호\n";
             }
 
             openFloorList();
@@ -110,6 +120,7 @@ namespace Delivery_Prototype
             else
             {
                 // 랜덤 일반인 이벤트
+                StartCoroutine(moveToNextFloor());
             }
         }
 
