@@ -9,11 +9,18 @@ namespace Delivery_Prototype
 {
     public class DeliveryGameManager : MonoSingleton<DeliveryGameManager>
     {
+        enum Direction
+        {
+            Left,
+            Right
+        }
+
         public int CurrentFloor
         {
             get { return currentFloor; }
         }
 
+        [SerializeField] int topFloor = 30;
         [SerializeField] int[] _targetHomes;
         [SerializeField] Text _textFloor;
 
@@ -24,23 +31,36 @@ namespace Delivery_Prototype
         [SerializeField] RectTransform _rectTransformElevatorDoorLeft;
         [SerializeField] RectTransform _rectTransformElevatorDoorRight;
 
+        [SerializeField] Button _buttonDropLeft;
+        [SerializeField] Button _buttonDropRight;
+
         private int currentFloor = 1;
+        private int targetFloor = 1;
+        private bool firstClose = true;
+        private bool elevatorDoorOpen = false;
 
         private void Awake()
         {
             _buttonCloseFloorList.onClick.AddListener(() => closeFloorList());
+
+            _buttonDropLeft.onClick.AddListener(() => dropItem(Direction.Left));
+            _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
+
             _textFloorListContent.text = "";
             foreach (int targetHome in _targetHomes)
             {
                 _textFloorListContent.text += $"{targetHome}호\n";
             }
+
             openFloorList();
         }
 
         private void Start()
         {
             currentFloor = 1;
+            targetFloor = topFloor;
             updateUI();
+            StartCoroutine(moveToNextFloor());
         }
 
         private void Update()
@@ -75,18 +95,75 @@ namespace Delivery_Prototype
             _canvasGroupFloorList.blocksRaycasts = true;
         }
 
-        private void openElevatorDoor()
+        private IEnumerator openElevatorDoor()
         {
+            _rectTransformElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
+            _rectTransformElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
+            yield return new WaitForSeconds(3f);
 
+            elevatorDoorOpen = true;
+
+            if (currentFloor == targetFloor)
+            {
+                // 배달 임무
+            }
+            else
+            {
+                // 랜덤 일반인 이벤트
+            }
+        }
+
+        private void dropItem(Direction direction)
+        {
+            if (direction == Direction.Left)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+
+        private IEnumerator closeElevatorDoor()
+        {
+            elevatorDoorOpen = false;
+            _rectTransformElevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
+            _rectTransformElevatorDoorRight.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
+            yield return new WaitForSeconds(3f);
         }
 
         private IEnumerator moveToNextFloor()
         {
             yield return new WaitForSeconds(2f);
-            currentFloor++;
+
+            if (targetFloor == currentFloor) yield break;
+
+            if (targetFloor > currentFloor)
+            {
+                currentFloor++;
+            }
+            else
+            {
+                currentFloor--;
+            }
+
             updateUI();
 
-            
+            if (UnityEngine.Random.Range(0, 100) < 50)
+            {
+                openElevatorDoor();
+                yield break;
+            }
+
+            if (currentFloor == targetFloor)
+            {
+                openElevatorDoor();
+            }
+            else
+            {
+                StartCoroutine(moveToNextFloor());
+            }
         }
     }
 }
