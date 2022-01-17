@@ -47,17 +47,18 @@ namespace Delivery_Prototype
 
         private void Awake()
         {
+            _targetHomes = new Dictionary<int, Direction>(){
+                {2, Direction.Left},
+                {5, Direction.Left}
+            };
+            _resultStat = new ResultStat();
             _buttonCloseFloorList.onClick.AddListener(() => closeFloorList());
 
             _buttonDropLeft.onClick.AddListener(() => dropItem(Direction.Left));
             _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
 
             _textFloorListContent.text = "";
-            _resultStat = new ResultStat();
-            _targetHomes = new Dictionary<int, Direction>(){
-                {2, Direction.Left},
-                {5, Direction.Left}
-            };
+
             foreach (var targetHome in _targetHomes)
             {
                 _textFloorListContent.text += $"{targetHome.Key}0{(int)targetHome.Value}호\n";
@@ -71,7 +72,7 @@ namespace Delivery_Prototype
             currentFloor = 1;
             targetFloor = topFloor;
             updateUI();
-            StartCoroutine(moveToNextFloor());
+            StartCoroutine(MoveElevator());
         }
 
         private void Update()
@@ -126,7 +127,7 @@ namespace Delivery_Prototype
                 yield return new WaitForSeconds(3f);
                 StartCoroutine(closeElevatorDoor());
                 yield return new WaitForSeconds(3f);
-                StartCoroutine(moveToNextFloor());
+                StartCoroutine(MoveElevator());
             }
         }
 
@@ -136,6 +137,11 @@ namespace Delivery_Prototype
             {
                 return;
             }
+            if (!_targetHomes.ContainsKey(currentFloor))
+            {
+                Debug.Log("배달이 없는 층");
+                return;
+            }
 
             if (direction == Direction.Left)
             {
@@ -143,13 +149,14 @@ namespace Delivery_Prototype
                 {
                     // 배달 성공
                     score += 100;
-                    _resultStat.successFloorList.Add(currentFloor);
+                    Debug.Log("배달 성공");
+                    //_resultStat.successFloorList.Add(currentFloor);
                 }
                 else
                 {
                     // 배달 실패
                     score -= 100;
-                    _resultStat.failFloorList.Add(currentFloor);
+                    //_resultStat.failFloorList.Add(currentFloor);
                 }
             }
             else
@@ -158,13 +165,13 @@ namespace Delivery_Prototype
                 {
                     // 배달 성공
                     score += 100;
-                    _resultStat.successFloorList.Add(currentFloor);
+                    //_resultStat.successFloorList.Add(currentFloor);
                 }
                 else
                 {
                     // 배달 실패
                     score -= 100;
-                    _resultStat.failFloorList.Add(currentFloor);
+                    //_resultStat.failFloorList.Add(currentFloor);
                 }
             }
         }
@@ -177,24 +184,23 @@ namespace Delivery_Prototype
             yield return new WaitForSeconds(3f);
         }
 
-        private IEnumerator moveToNextFloor()
+        private IEnumerator MoveElevator()
         {
             yield return new WaitForSeconds(2f);
 
             if (targetFloor == currentFloor) yield break;
 
-            if (targetFloor > currentFloor)
-            {
-                currentFloor++;
-            }
-            else
-            {
-                currentFloor--;
-            }
+            currentFloor++;
 
             updateUI();
 
-            if (UnityEngine.Random.Range(0, 100) < 50)
+            if (_targetHomes.ContainsKey(currentFloor))
+            {
+                StartCoroutine(openElevatorDoor());
+                yield break;
+            }
+
+            if (UnityEngine.Random.Range(0, 100) < 30)
             {
                 StartCoroutine(openElevatorDoor());
                 yield break;
@@ -202,11 +208,11 @@ namespace Delivery_Prototype
 
             if (currentFloor == targetFloor)
             {
-                StartCoroutine(openElevatorDoor());
+                Debug.Log("목표층에 도착");
             }
             else
             {
-                StartCoroutine(moveToNextFloor());
+                StartCoroutine(MoveElevator());
             }
         }
     }
