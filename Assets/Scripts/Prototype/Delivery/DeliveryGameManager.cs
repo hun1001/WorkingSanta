@@ -19,8 +19,8 @@ namespace Delivery_Prototype
         class ResultStat
         {
             public int total;
-            public List<int> successFloorList;
-            public List<int> failFloorList;
+            public List<int> successFloorList = new List<int>();
+            public List<int> failFloorList = new List<int>();
         }
 
 
@@ -150,13 +150,13 @@ namespace Delivery_Prototype
                     // 배달 성공
                     score += 100;
                     Debug.Log("배달 성공");
-                    //_resultStat.successFloorList.Add(currentFloor);
+                    _resultStat.successFloorList.Add(currentFloor);
                 }
                 else
                 {
                     // 배달 실패
                     score -= 100;
-                    //_resultStat.failFloorList.Add(currentFloor);
+                    _resultStat.failFloorList.Add(currentFloor);
                 }
             }
             else
@@ -165,13 +165,13 @@ namespace Delivery_Prototype
                 {
                     // 배달 성공
                     score += 100;
-                    //_resultStat.successFloorList.Add(currentFloor);
+                    _resultStat.successFloorList.Add(currentFloor);
                 }
                 else
                 {
                     // 배달 실패
                     score -= 100;
-                    //_resultStat.failFloorList.Add(currentFloor);
+                    _resultStat.failFloorList.Add(currentFloor);
                 }
             }
         }
