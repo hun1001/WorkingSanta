@@ -59,27 +59,27 @@ namespace Prototype.Delivery
             {
                 if (_canvasGroupFloorList.alpha == 0)
                 {
-                    openFloorList();
+                    OpenFloorList();
                 }
                 else
                 {
-                    closeFloorList();
+                    CloseFloorList();
                 }
             }
         }
 
-        private void updateUI()
+        private void UpdateUI()
         {
             
         }
 
-        private void closeFloorList()
+        private void CloseFloorList()
         {
             _canvasGroupFloorList.alpha = 0;
             _canvasGroupFloorList.blocksRaycasts = false;
         }
 
-        private void openFloorList()
+        private void OpenFloorList()
         {
             _canvasGroupFloorList.alpha = 1;
             _canvasGroupFloorList.blocksRaycasts = true;
@@ -138,17 +138,17 @@ namespace Prototype.Delivery
 
             currentFloor++;
 
-            updateUI();
+            UpdateUI();
 
             if (_targetHomes.ContainsKey(currentFloor))
             {
-                StartCoroutine(openElevatorDoor());
+                StartCoroutine(OpenElevatorDoor());
                 yield break;
             }
 
             if (UnityEngine.Random.Range(0, 100) < 30)
             {
-                StartCoroutine(openElevatorDoor());
+                StartCoroutine(OpenElevatorDoor());
                 yield break;
             }
 
