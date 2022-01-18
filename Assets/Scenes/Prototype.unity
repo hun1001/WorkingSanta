@@ -1764,15 +1764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635d15de8a66bf6449b674139a457804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topFloor: 5
-  _textFloor: {fileID: 1758007320}
-  _textFloorListContent: {fileID: 1471353192}
-  _buttonCloseFloorList: {fileID: 165494827}
-  _canvasGroupFloorList: {fileID: 478844888}
-  _rectTransformElevatorDoorLeft: {fileID: 280175085}
-  _rectTransformElevatorDoorRight: {fileID: 1039823122}
-  _buttonDropLeft: {fileID: 2058799568}
-  _buttonDropRight: {fileID: 1987036847}
 --- !u!1 &1758007318
 GameObject:
   m_ObjectHideFlags: 0
