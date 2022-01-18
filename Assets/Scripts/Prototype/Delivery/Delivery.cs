@@ -5,45 +5,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace Delivery_Prototype
+namespace Prototype.Delivery
 {
-    public class DeliveryGameManager : MonoSingleton<DeliveryGameManager>
+    public enum Direction
     {
-        enum Direction
-        {
-            Left = 1,
-            Right
-        }
+        Left = 1,
+        Right
+    }
 
+    class ResultStat
+    {
+        public int total;
+        public List<int> successFloorList = new List<int>();
+        public List<int> failFloorList = new List<int>();
+    }
 
-        class ResultStat
-        {
-            public int total;
-            public List<int> successFloorList = new List<int>();
-            public List<int> failFloorList = new List<int>();
-        }
-
-
-        [SerializeField] int topFloor = 30;
-        [SerializeField] Text _textFloor;
-
+    public class Delivery : MonoSingleton<Delivery>
+    {
         [SerializeField] Text _textFloorListContent;
         [SerializeField] Button _buttonCloseFloorList;
         [SerializeField] CanvasGroup _canvasGroupFloorList;
 
-        [SerializeField] RectTransform _rectTransformElevatorDoorLeft;
-        [SerializeField] RectTransform _rectTransformElevatorDoorRight;
-
-        [SerializeField] Button _buttonDropLeft;
-        [SerializeField] Button _buttonDropRight;
-
         private Dictionary<int, Direction> _targetHomes;
         private ResultStat _resultStat;
-        private int currentFloor = 1;
-        private int targetFloor = 1;
         private int score = 0;
-        private bool firstClose = true;
-        private bool elevatorDoorOpen = false;
 
         private void Awake()
         {
@@ -52,10 +37,6 @@ namespace Delivery_Prototype
                 {5, Direction.Left}
             };
             _resultStat = new ResultStat();
-            _buttonCloseFloorList.onClick.AddListener(() => closeFloorList());
-
-            _buttonDropLeft.onClick.AddListener(() => dropItem(Direction.Left));
-            _buttonDropRight.onClick.AddListener(() => dropItem(Direction.Right));
 
             _textFloorListContent.text = "";
 
@@ -63,14 +44,11 @@ namespace Delivery_Prototype
             {
                 _textFloorListContent.text += $"{targetHome.Key}0{(int)targetHome.Value}호\n";
             }
-
             openFloorList();
         }
 
         private void Start()
         {
-            currentFloor = 1;
-            targetFloor = topFloor;
             updateUI();
             StartCoroutine(MoveElevator());
         }
@@ -92,7 +70,7 @@ namespace Delivery_Prototype
 
         private void updateUI()
         {
-            _textFloor.text = currentFloor.ToString();
+            
         }
 
         private void closeFloorList()
@@ -105,30 +83,6 @@ namespace Delivery_Prototype
         {
             _canvasGroupFloorList.alpha = 1;
             _canvasGroupFloorList.blocksRaycasts = true;
-        }
-
-        private IEnumerator openElevatorDoor()
-        {
-            _rectTransformElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
-            _rectTransformElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
-            yield return new WaitForSeconds(3f);
-
-            elevatorDoorOpen = true;
-
-            if (currentFloor == targetFloor)
-            {
-                // 배달 임무
-
-            }
-            else
-            {
-                // 랜덤 일반인 이벤트
-                Debug.Log("일반인 이벤트");
-                yield return new WaitForSeconds(3f);
-                StartCoroutine(closeElevatorDoor());
-                yield return new WaitForSeconds(3f);
-                StartCoroutine(MoveElevator());
-            }
         }
 
         private void dropItem(Direction direction)
@@ -174,14 +128,6 @@ namespace Delivery_Prototype
                     _resultStat.failFloorList.Add(currentFloor);
                 }
             }
-        }
-
-        private IEnumerator closeElevatorDoor()
-        {
-            elevatorDoorOpen = false;
-            _rectTransformElevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
-            _rectTransformElevatorDoorRight.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
-            yield return new WaitForSeconds(3f);
         }
 
         private IEnumerator MoveElevator()

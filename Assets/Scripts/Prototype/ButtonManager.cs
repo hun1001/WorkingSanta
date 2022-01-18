@@ -34,7 +34,7 @@ namespace Prototype
         {
             foreach (var buttonInfo in _buttonInfos)
             {
-                MethodInfo methodInfo = handler.GetType().GetMethod("on" + buttonInfo.name, BindingFlags.NonPublic | BindingFlags.Instance);
+                MethodInfo methodInfo = handler.GetType().GetMethod("On" + buttonInfo.name, BindingFlags.NonPublic | BindingFlags.Instance);
                 if (methodInfo != null)
                 {
                     buttonInfo.button.onClick.AddListener(() => methodInfo.Invoke(handler, null));
