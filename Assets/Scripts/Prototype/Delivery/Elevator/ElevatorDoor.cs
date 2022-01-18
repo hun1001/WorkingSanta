@@ -1,15 +1,17 @@
 using System.Diagnostics;
 using UnityEngine;
 using Prototype.Delivery.Elevator;
+using System.Collections;
+using DG.Tweening;
 
 namespace Prototype.Delivery.Elevator
 {
     class ElevatorDoor : MonoBehaviour
     {
-        public bool IsOpen { get { return _isOpen; } }
+        public bool IsOpen { get { return isOpen; } }
 
-        [SerializeField] RectTransform elevatorDoorLeft;
-        [SerializeField] RectTransform elevatorDoorRight;
+        [SerializeField] RectTransform ElevatorDoorLeft;
+        [SerializeField] RectTransform ElevatorDoorRight;
 
         private bool isOpen = false;
 
@@ -23,21 +25,21 @@ namespace Prototype.Delivery.Elevator
             StartCoroutine(CloseCoroutine());
         }
 
-        private IEnumerator openCoroutine()
+        private IEnumerator OpenCoroutine()
         {
             if (isOpen)
             {
                 yield break;
             }
 
-            elevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
-            elevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
+            ElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
+            ElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
             yield return new WaitForSeconds(3f);
 
             isOpen = true;
         }
 
-        private IEnumerator closeCoroutine()
+        private IEnumerator CloseCoroutine()
         {
             if (!isOpen)
             {
@@ -46,8 +48,8 @@ namespace Prototype.Delivery.Elevator
 
             isOpen = false;
 
-            elevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
-            elevatorDoorRight.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
+            ElevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
+            ElevatorDoorRight.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
             yield return new WaitForSeconds(3f);
         }
     }
