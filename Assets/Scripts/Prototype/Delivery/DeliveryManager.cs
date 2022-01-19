@@ -11,7 +11,7 @@ namespace Prototype.Delivery
     public enum Direction
     {
         Left = 1,
-        Right
+        Right = 2
     }
 
     class ResultStat

@@ -3,28 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+namespace Prototype.Delivery
 {
-    public void OnBeginDrag(PointerEventData eventData)
+    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHandler
     {
-        // 이게 굳이 필요 한가?
-        Debug.Log("Begin Drag");
-    }
+        private RectTransform inventoryRect;
+        private RectTransform rectTransform;
+        private Vector3 startPosition;
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = new Vector3(Camera.main.ScreenToWorldPoint(eventData.position).x, Camera.main.ScreenToWorldPoint(eventData.position).y, 0);
-    }
+        private void Awake()
+        {
+            rectTransform = GetComponent<RectTransform>();
+            inventoryRect = transform.parent.GetComponent<RectTransform>();
+        }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        // 엘레베이터 문이 열렸을때 왼쪽 위치나 오른쪽 위치에 올려두면 fade out 이 외의 상황은 원래 위치로
-    }
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            startPosition = transform.position;
+        }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        // 이게 굳이 필요 한가?
-        Debug.Log("OnEndDrag");
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
+            {
+                transform.position = new Vector3(Camera.main.ScreenToWorldPoint(eventData.position).x, Camera.main.ScreenToWorldPoint(eventData.position).y, 0);
+            }
+            else
+            {
+                OnDrop(eventData);
+            }
+        }
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
+            {
+                if (!isOverlaps(inventoryRect, rectTransform))
+                {
+                    if (transform.position.x < 0)
+                    {
+                        Debug.Log("Left");
+                    }
+                    else
+                    {
+                        Debug.Log("Right");
+                    }
+                    return;
+                }
+                else
+                {
+                    transform.position = startPosition;
+                }
+            }
+        }
+
+        private bool isOverlaps(RectTransform rect1, RectTransform rect2)
+        {
+            return rect1.rect.Overlaps(rect2.rect);
+        }
     }
 }
-
