@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using Prototype.Delivery.Elevator;
 using System.Collections;
