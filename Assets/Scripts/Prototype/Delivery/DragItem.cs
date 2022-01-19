@@ -19,6 +19,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrop(PointerEventData eventData)
     {
         // 엘레베이터 문이 열렸을때 왼쪽 위치나 오른쪽 위치에 올려두면 fade out 이 외의 상황은 원래 위치로
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
