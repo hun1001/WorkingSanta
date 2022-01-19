@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Prototype.Delivery.Elevator;
 
 namespace Prototype.Delivery
 {
@@ -20,73 +21,54 @@ namespace Prototype.Delivery
         public List<int> FailFloorList = new List<int>();
     }
 
+    [Serializable]
+    public class HomeElement
+    {
+        public int Floor;
+        public Direction Direction;
+        public bool IsSuccess;
+    }
+
     public class DeliveryManager : MonoSingleton<DeliveryManager>
     {
-        [SerializeField] Text FloorListContent;
-        [SerializeField] Button CloseFloorListButton;
-        [SerializeField] CanvasGroup FloorList;
+        public ElevatorCore ElevatorCore { get { return elevator; } }
 
-        private Dictionary<int, Direction> targetHomes;
-        private ResultStat resultStat;
+        [SerializeField] Text floorListContent;
+        [SerializeField] CanvasGroup floorList;
+        [SerializeField] ElevatorCore elevator;
+        [SerializeField] HomeElement[] targetHomes;
+
+        private ResultStat resultStat = new ResultStat();
         private int score = 0;
-
+        
         private void Awake()
         {
-            targetHomes = new Dictionary<int, Direction>(){
-                {2, Direction.Left},
-                {5, Direction.Left}
-            };
-            resultStat = new ResultStat();
-
-            FloorListContent.text = "";
-
-            foreach (var targetHome in targetHomes)
-            {
-                FloorListContent.text += $"{targetHome.Key}0{(int)targetHome.Value}호\n";
-            }
-            OpenFloorList();
+            ButtonManager.Instance.AddHandler(this);
         }
 
         private void Start()
         {
-            UpdateUI();
+            floorList.alpha = 0;
+            floorList.blocksRaycasts = false;
+
+            elevator.ElevatorDoor.Open();
         }
 
-        private void Update()
+        private void OnCloseFloorListButton()
         {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                if (FloorList.alpha == 0)
-                {
-                    OpenFloorList();
-                }
-                else
-                {
-                    CloseFloorList();
-                }
-            }
+            CloseFloorList();
         }
 
-        private void UpdateUI()
+        public void OpenFloorList()
         {
-            
+            floorList.DOFade(1, 0.5f);
+            floorList.blocksRaycasts = true;
         }
 
-        private void CloseFloorList()
+        public void CloseFloorList()
         {
-            FloorList.alpha = 0;
-            FloorList.blocksRaycasts = false;
-        }
-
-        private void OpenFloorList()
-        {
-            FloorList.alpha = 1;
-            FloorList.blocksRaycasts = true;
-        }
-
-        private void DropItem(Direction direction)
-        {
-            
+            floorList.DOFade(0, 0.5f);
+            floorList.blocksRaycasts = false;
         }
     }
 }

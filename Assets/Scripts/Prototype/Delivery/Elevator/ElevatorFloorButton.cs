@@ -3,7 +3,7 @@ using Prototype.Delivery.Elevator;
 
 namespace Prototype.Delivery.Elevator
 {
-    class ElevatorFloorButton : MonoBehaviour
+    public class ElevatorFloorButton : MonoBehaviour
     {
         
     }

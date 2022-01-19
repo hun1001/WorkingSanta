@@ -6,20 +6,21 @@ using System;
 
 namespace Prototype.Delivery.Elevator
 {
-    class Elevator : MonoBehaviour
+    public class ElevatorCore : MonoBehaviour
     {
+        public ElevatorDoor ElevatorDoor { get { return elevatorDoor; } }
+
         [SerializeField] int topFloor = 30;
-        [SerializeField] Text FloorText;
-        [SerializeField] ElevatorDoor ElevatorDoor;
-        [SerializeField] ElevatorFloorButton FloorButton;
+        [SerializeField] Text floorText;
+        [SerializeField] ElevatorDoor elevatorDoor;
+        [SerializeField] ElevatorFloorButton floorButton;
 
         private int currentFloor = 1;
         private int targetFloor = 1;
-        private bool elevatorDoorOpen = false;
 
         private void UpdateUI()
         {
-            FloorText.text = $"{currentFloor}";
+            floorText.text = $"{currentFloor}";
         }
 
         public void MoveElevator()
