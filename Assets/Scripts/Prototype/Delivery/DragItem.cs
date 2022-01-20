@@ -59,7 +59,14 @@ namespace Prototype.Delivery
 
         private bool isOverlaps(RectTransform rect1, RectTransform rect2)
         {
-            return rect1.rect.Overlaps(rect2.rect);
+            if (rect1.position.x > rect2.position.x && rect1.position.x < rect2.position.x + rect2.rect.width)
+            {
+                if (rect1.position.y > rect2.position.y && rect1.position.y < rect2.position.y + rect2.rect.height)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
