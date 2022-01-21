@@ -25,7 +25,10 @@ namespace Prototype
                 var buttonInfo = _buttonInfos.Find(x => x.button == button);
                 if (buttonInfo == null)
                 {
-                    Debug.LogError("등록되어있지 않은 버튼이 있습니다: " + GetGameObjectPath(button.gameObject));
+                    if (button.onClick == null)
+                    {
+                        Debug.LogError("등록되어있지 않은 버튼이 있습니다: " + GetGameObjectPath(button.gameObject));
+                    }
                 }
             }
         }
@@ -38,10 +41,6 @@ namespace Prototype
                 if (methodInfo != null)
                 {
                     buttonInfo.button.onClick.AddListener(() => methodInfo.Invoke(handler, null));
-                }
-                else
-                {
-                    Debug.LogWarning("버튼 헨들러가 없습니다: " + buttonInfo.name);
                 }
             }
         }

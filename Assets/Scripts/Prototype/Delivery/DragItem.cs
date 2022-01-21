@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Prototype.Delivery
 {
-    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHandler
+    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler// , IDropHandler
     {
         private RectTransform inventoryRect;
         private RectTransform rectTransform;
@@ -24,49 +24,33 @@ namespace Prototype.Delivery
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
-            {
-                transform.position = new Vector3(Camera.main.ScreenToWorldPoint(eventData.position).x, Camera.main.ScreenToWorldPoint(eventData.position).y, 0);
-            }
-            else
-            {
-                OnDrop(eventData);
-            }
+            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(eventData.position).x, Camera.main.ScreenToWorldPoint(eventData.position).y, 0);
         }
 
-        public void OnDrop(PointerEventData eventData)
-        {
-            if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
-            {
-                if (!isOverlaps(inventoryRect, rectTransform))
-                {
-                    if (transform.position.x < 0)
-                    {
-                        Debug.Log("Left");
-                    }
-                    else
-                    {
-                        Debug.Log("Right");
-                    }
-                    return;
-                }
-                else
-                {
-                    transform.position = startPosition;
-                }
-            }
-        }
+        // public void OnDrop(PointerEventData eventData)
+        // {
+        //     if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
+        //     {
+        //         Debug.Log("isOverlapped(inventoryRect, rectTransform) : " + isOverlapped(inventoryRect, rectTransform));
+        //         if (!isOverlapped(inventoryRect, rectTransform))
+        //         {
+        //             if (transform.position.x < 0)
+        //             {
+        //                 Debug.Log("Left");
+        //             }
+        //             else
+        //             {
+        //                 Debug.Log("Right");
+        //             }
+        //             return;
+        //         }
+        //     }
+        //     transform.position = startPosition;
+        // }
 
-        private bool isOverlaps(RectTransform rect1, RectTransform rect2)
-        {
-            if (rect1.position.x > rect2.position.x && rect1.position.x < rect2.position.x + rect2.rect.width)
-            {
-                if (rect1.position.y > rect2.position.y && rect1.position.y < rect2.position.y + rect2.rect.height)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        // private bool isOverlapped(RectTransform rect1, RectTransform rect2)
+        // {
+            
+        // }
     }
 }

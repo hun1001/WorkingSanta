@@ -15,6 +15,7 @@ namespace Prototype.Delivery.Elevator
         [SerializeField] RectTransform ElevatorDoorLeft;
         [SerializeField] RectTransform ElevatorDoorRight;
 
+        private Coroutine autoCloseCoroutine;
         private bool isOpen = false;
 
         public void Open()
@@ -27,22 +28,21 @@ namespace Prototype.Delivery.Elevator
             StartCoroutine(CloseCoroutine());
         }
 
-        private IEnumerator OpenCoroutine()
+        public IEnumerator OpenCoroutine()
         {
-            if (isOpen)
-            {
-                yield break;
-            }
+            if (isOpen || DeliveryManager.Instance.Elevator.IsMoving) yield break;
 
             ElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
             ElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
             yield return new WaitForSeconds(3f);
-
+            autoCloseCoroutine = StartCoroutine(AutoCloseCoroutine());
             isOpen = true;
         }
 
-        private IEnumerator CloseCoroutine()
+        public IEnumerator CloseCoroutine()
         {
+            if (autoCloseCoroutine != null) StopCoroutine(autoCloseCoroutine);
+
             if (!isOpen)
             {
                 yield break;
@@ -53,6 +53,13 @@ namespace Prototype.Delivery.Elevator
             ElevatorDoorLeft.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
             ElevatorDoorRight.DOAnchorPosX(0, 3f).SetEase(Ease.InOutExpo);
             yield return new WaitForSeconds(3f);
+            DeliveryManager.Instance.Elevator.MoveElevator();
+        }
+
+        private IEnumerator AutoCloseCoroutine()
+        {
+            yield return new WaitForSeconds(3f);
+            Close();
         }
     }
 }

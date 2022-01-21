@@ -29,10 +29,19 @@ namespace Prototype.Delivery
         public bool IsSuccess;
     }
 
+    [Serializable]
+    public class BuildingElement
+    {
+        public int TopFloor;
+        public float ElevatorSpeed;
+        public float ResidentEventProbability;
+    }
+
     public class DeliveryManager : MonoSingleton<DeliveryManager>
     {
-        public ElevatorCore ElevatorCore { get { return elevator; } }
+        public ElevatorCore Elevator { get { return elevator; } }
 
+        [SerializeField] Text debugText;
         [SerializeField] Text floorListContent;
         [SerializeField] CanvasGroup floorList;
         [SerializeField] ElevatorCore elevator;
@@ -40,18 +49,59 @@ namespace Prototype.Delivery
 
         private ResultStat resultStat = new ResultStat();
         private int score = 0;
+        private bool isStart = false;
+        private float startTime = 5f;
+        private float timeTotal = 0f;
+        private int targetIndex = 0;
         
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
+
+            floorList.alpha = 0;
+            floorList.blocksRaycasts = false;
         }
 
         private void Start()
         {
-            floorList.alpha = 0;
-            floorList.blocksRaycasts = false;
+            //TODO: 시작 전 건물 선택
+            OpenFloorList();
+            elevator.Door.Open();
+            elevator.OnElevatorArrival += OnElevatorArrival;
 
-            elevator.ElevatorDoor.Open();
+            foreach (var home in targetHomes)
+            {
+                floorListContent.text += $"{home.Floor}{((int)home.Direction).ToString("00")}호\n";
+            }
+        }
+
+        private void OnElevatorArrival(int floor)
+        {
+            if (targetHomes[targetIndex].Floor == floor)
+            {
+                targetIndex++;
+            }
+        }
+
+        private void Update()
+        {
+            UpdateDebugText();
+
+            if (isStart)
+            {
+                timeTotal += Time.deltaTime;
+            }
+            else
+            {
+                startTime -= Time.deltaTime;
+                if (startTime <= 0)
+                {
+                    isStart = true;
+                    startTime = 5f;
+                    elevator.TargetFloor = elevator.TopFloor;
+                    elevator.MoveElevator();
+                }
+            }
         }
 
         private void OnCloseFloorListButton()
@@ -69,6 +119,29 @@ namespace Prototype.Delivery
         {
             floorList.DOFade(0, 0.5f);
             floorList.blocksRaycasts = false;
+        }
+
+        public void UpdateDebugText()
+        {
+            string text = "";
+            text += $"Started: {isStart}\n";
+            text += "=====ElevatorInfo=====\n";
+            text += $"CurrentFloor: {elevator.CurrentFloor}/{elevator.TopFloor}\n";
+            text += $"TargetFloor: {elevator.TargetFloor}\n";
+            text += $"IsMoving: {elevator.IsMoving}\n";
+            text += $"ElevatorDoorOpened: {elevator.Door.IsOpen}\n";
+            text += $"TimeToNextFloor: {elevator.TimeToNextFloor}\n";
+            text += $"ResidentEventProbability: {elevator.ResidentEventProbability}\n";
+            text += "=====ResultStat=====\n";
+            text += $"Score: {score}\n";
+            text += $"Success: {resultStat.SuccessFloorList.Count}\n";
+            text += $"Fails: {resultStat.FailFloorList.Count}\n";
+            text += $"Total: {resultStat.Total}\n";
+            text += $"SuccessRate: {(float)resultStat.SuccessFloorList.Count / resultStat.Total * 100}%\n";
+            text += "=====Timer=====\n";
+            text += $"StartTime: {startTime}\n";
+            text += $"TotalTime: {timeTotal}\n";
+            debugText.text = text;
         }
     }
 }
