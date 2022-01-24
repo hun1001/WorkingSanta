@@ -39,7 +39,7 @@ namespace Prototype.Delivery.Elevator
 
         private void CloseButtonWindow()
         {
-            
+            gameObject.SetActive(false);
         }
     }
 }

@@ -37,21 +37,46 @@ namespace Prototype.Delivery
         public float ResidentEventProbability;
     }
 
+    public class GameInfo
+    {
+        private ResultStat resultStat = new ResultStat();
+        public int score = 0;
+        public bool isStart = false;
+        public float startTime = 5f;
+        public float timeTotal = 0f;
+
+        public ResultStat GetResultStat()
+        {
+            return resultStat;
+        }
+
+        public void CopyInfo(GameInfo info)
+        {
+            resultStat = info.resultStat;
+            score = info.score;
+            isStart = info.isStart;
+            startTime = info.startTime;
+            timeTotal = info.timeTotal;
+        }
+    }
+
     public class DeliveryManager : MonoSingleton<DeliveryManager>
     {
         public ElevatorCore Elevator { get { return elevator; } }
 
-        [SerializeField] Text debugText;
         [SerializeField] Text floorListContent;
         [SerializeField] CanvasGroup floorList;
         [SerializeField] ElevatorCore elevator;
         [SerializeField] HomeElement[] targetHomes;
 
-        private ResultStat resultStat = new ResultStat();
-        private int score = 0;
-        private bool isStart = false;
-        private float startTime = 5f;
-        private float timeTotal = 0f;
+        
+        GameInfo gameInfo = new GameInfo();
+
+        public GameInfo GetGameInfo()
+        {
+            return gameInfo;
+        }
+
         private int targetIndex = 0;
         
         private void Awake()
@@ -85,28 +110,21 @@ namespace Prototype.Delivery
 
         private void Update()
         {
-            UpdateDebugText();
-
-            if (isStart)
+            if (gameInfo.isStart)
             {
-                timeTotal += Time.deltaTime;
+                gameInfo.timeTotal += Time.deltaTime;
             }
             else
             {
-                startTime -= Time.deltaTime;
-                if (startTime <= 0)
+                gameInfo.startTime -= Time.deltaTime;
+                if (gameInfo.startTime <= 0)
                 {
-                    isStart = true;
-                    startTime = 5f;
+                    gameInfo.isStart = true;
+                    gameInfo.startTime = 5f;
                     elevator.TargetFloor = elevator.TopFloor;
                     elevator.MoveElevator();
                 }
             }
-        }
-
-        private void OnCloseFloorListButton()
-        {
-            CloseFloorList();
         }
 
         public void OpenFloorList()
@@ -121,27 +139,9 @@ namespace Prototype.Delivery
             floorList.blocksRaycasts = false;
         }
 
-        public void UpdateDebugText()
+        private void OnCloseFloorListButton()
         {
-            string text = "";
-            text += $"Started: {isStart}\n";
-            text += "=====ElevatorInfo=====\n";
-            text += $"CurrentFloor: {elevator.CurrentFloor}/{elevator.TopFloor}\n";
-            text += $"TargetFloor: {elevator.TargetFloor}\n";
-            text += $"IsMoving: {elevator.IsMoving}\n";
-            text += $"ElevatorDoorOpened: {elevator.Door.IsOpen}\n";
-            text += $"TimeToNextFloor: {elevator.TimeToNextFloor}\n";
-            text += $"ResidentEventProbability: {elevator.ResidentEventProbability}\n";
-            text += "=====ResultStat=====\n";
-            text += $"Score: {score}\n";
-            text += $"Success: {resultStat.SuccessFloorList.Count}\n";
-            text += $"Fails: {resultStat.FailFloorList.Count}\n";
-            text += $"Total: {resultStat.Total}\n";
-            text += $"SuccessRate: {(float)resultStat.SuccessFloorList.Count / resultStat.Total * 100}%\n";
-            text += "=====Timer=====\n";
-            text += $"StartTime: {startTime}\n";
-            text += $"TotalTime: {timeTotal}\n";
-            debugText.text = text;
+            CloseFloorList();
         }
     }
 }
