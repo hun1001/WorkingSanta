@@ -1763,10 +1763,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topFloor: 30
-  floorText: {fileID: 1758007320}
+  elavatorFloor: {fileID: 0}
   door: {fileID: 1092994374}
-  floorButton: {fileID: 0}
+  floorButton: {fileID: 560347176}
   timeToNextFloor: 1
+  apartFloor: {fileID: 808626239}
 --- !u!1 &772603022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,6 +3594,7 @@ GameObject:
   - component: {fileID: 1656534600}
   - component: {fileID: 1656534602}
   - component: {fileID: 1656534601}
+  - component: {fileID: 1656534603}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3626,7 +3628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8692225f5f2b44b8c63cad915264cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 1522398100}
   floorListContent: {fileID: 1471353192}
   floorList: {fileID: 478844888}
   elevator: {fileID: 744538893}
@@ -3666,6 +3667,19 @@ MonoBehaviour:
     button: {fileID: 165494827}
   - name: CloseButtonPad
     button: {fileID: 575109537}
+--- !u!114 &1656534603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656534599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbef0c7ad27e934c91ce2c7e077390c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugText: {fileID: 1522398100}
 --- !u!1 &1758007318
 GameObject:
   m_ObjectHideFlags: 0

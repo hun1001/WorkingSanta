@@ -31,10 +31,11 @@ namespace Prototype.Delivery.Elevator
         public bool IsMoving { get { return isMoving; } }
 
         [SerializeField] int topFloor = 30;
-        [SerializeField] Text floorText;
+        [SerializeField] Text elavatorFloor;
         [SerializeField] ElevatorDoor door;
         [SerializeField] ElevatorFloorButton floorButton;
         [SerializeField] float timeToNextFloor = 1f;
+        [SerializeField] Text apartFloor;
 
         private int currentFloor = 1;
         private int targetFloor = 1;
@@ -49,7 +50,8 @@ namespace Prototype.Delivery.Elevator
 
         private void UpdateUI()
         {
-            floorText.text = $"{currentFloor}";
+            elavatorFloor.text = $"{currentFloor}";
+            apartFloor.text = $"{currentFloor}";
         }
 
         public void MoveElevator()
