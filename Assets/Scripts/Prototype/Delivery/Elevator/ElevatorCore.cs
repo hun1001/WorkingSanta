@@ -87,18 +87,16 @@ namespace Prototype.Delivery.Elevator
 
             if (targetFloors.Contains(currentFloor))
             {
-                Debug.Log("Arrived");
                 targetFloors.Remove(currentFloor);
                 isArrival = true;
             }
             else if (UnityEngine.Random.Range(0, 1) < residentEventProbability)
             {
-                // Debug.Log("ResidentEvent");
-                // isArrival = true;
+                Debug.Log("ResidentEvent");
+                isArrival = true;
             }
             else if (currentFloor == targetFloor)
             {
-                Debug.Log("Arrived");
                 isArrival = true;
             }
 

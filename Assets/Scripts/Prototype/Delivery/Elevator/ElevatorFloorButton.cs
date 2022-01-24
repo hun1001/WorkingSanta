@@ -24,7 +24,6 @@ namespace Prototype.Delivery.Elevator
 
         private void OnValueChanged(int index, bool value)
         {
-            Debug.Log("OnValueChanged: " + index + " " + value);
             if (value)
             {
                 DeliveryManager.Instance.Elevator.AddTargetFloor(index + 1);
