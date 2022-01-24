@@ -14,7 +14,7 @@ namespace Prototype.Delivery
         Right = 2
     }
 
-    class ResultStat
+    public class ResultStat
     {
         public int Total;
         public List<int> SuccessFloorList = new List<int>();
@@ -39,7 +39,7 @@ namespace Prototype.Delivery
 
     public class GameInfo
     {
-        private ResultStat resultStat {set; public get;} = new ResultStat();
+        public ResultStat resultStat {get; private set;} = new ResultStat();
         public int score = 0;
         public bool isStart = false;
         public float startTime = 5f;

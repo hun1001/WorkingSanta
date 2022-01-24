@@ -22,12 +22,12 @@ namespace Prototype.Delivery
             string text = "";
             text += $"Started: {gameInfo.isStart}\n";
             text += "=====ElevatorInfo=====\n";
-            text += $"CurrentFloor: {Elevator.CurrentFloor}/{Elevator.TopFloor}\n";
-            text += $"TargetFloor: {Elevator.TargetFloor}\n";
-            text += $"IsMoving: {Elevator.IsMoving}\n";
-            text += $"ElevatorDoorOpened: {Elevator.Door.IsOpen}\n";
-            text += $"TimeToNextFloor: {Elevator.TimeToNextFloor}\n";
-            text += $"ResidentEventProbability: {Elevator.ResidentEventProbability}\n";
+            text += $"CurrentFloor: {DeliveryManager.Instance.Elevator.CurrentFloor}/{DeliveryManager.Instance.Elevator.TopFloor}\n";
+            text += $"TargetFloor: {DeliveryManager.Instance.Elevator.TargetFloor}\n";
+            text += $"IsMoving: {DeliveryManager.Instance.Elevator.IsMoving}\n";
+            text += $"ElevatorDoorOpened: {DeliveryManager.Instance.Elevator.Door.IsOpen}\n";
+            text += $"TimeToNextFloor: {DeliveryManager.Instance.Elevator.TimeToNextFloor}\n";
+            text += $"ResidentEventProbability: {DeliveryManager.Instance.Elevator.ResidentEventProbability}\n";
             text += "=====ResultStat=====\n";
             text += $"Score: {gameInfo.score}\n";
             text += $"Success: {gameInfo.GetResultStat().SuccessFloorList.Count}\n";
