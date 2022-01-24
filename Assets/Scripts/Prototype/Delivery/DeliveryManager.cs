@@ -14,7 +14,7 @@ namespace Prototype.Delivery
         Right = 2
     }
 
-    class ResultStat
+    public class ResultStat
     {
         public int Total;
         public List<int> SuccessFloorList = new List<int>();
@@ -39,7 +39,7 @@ namespace Prototype.Delivery
 
     public class GameInfo
     {
-        private ResultStat resultStat {set; public get;} = new ResultStat();
+        public ResultStat resultStat { private set; get; } = new ResultStat();
         public int score = 0;
         public bool isStart = false;
         public float startTime = 5f;
@@ -58,6 +58,7 @@ namespace Prototype.Delivery
     public class DeliveryManager : MonoSingleton<DeliveryManager>
     {
         public ElevatorCore Elevator { get { return elevator; } }
+        public GameInfo GameInfo { get { return gameInfo; } }
 
         [SerializeField] Text floorListContent;
         [SerializeField] CanvasGroup floorList;
@@ -66,11 +67,6 @@ namespace Prototype.Delivery
 
         
         GameInfo gameInfo = new GameInfo();
-
-        public GameInfo GetGameInfo()
-        {
-            return gameInfo;
-        }
 
         private int targetIndex = 0;
         
