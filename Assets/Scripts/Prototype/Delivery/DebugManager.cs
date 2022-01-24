@@ -1,3 +1,4 @@
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -21,25 +22,25 @@ namespace Prototype.Delivery
         
         private void Update()
         {
-            string text = "";
-            text += $"Started: {gameInfo.isStart}\n";
-            text += "=====ElevatorInfo=====\n";
-            text += $"CurrentFloor: {elevator.CurrentFloor}/{elevator.TopFloor}\n";
-            text += $"TargetFloor: {elevator.TargetFloor}\n";
-            text += $"IsMoving: {elevator.IsMoving}\n";
-            text += $"ElevatorDoorOpened: {elevator.Door.IsOpen}\n";
-            text += $"TimeToNextFloor: {elevator.TimeToNextFloor}\n";
-            text += $"ResidentEventProbability: {elevator.ResidentEventProbability}\n";
-            text += "=====ResultStat=====\n";
-            text += $"Score: {gameInfo.score}\n";
-            text += $"Success: {gameInfo.resultStat.SuccessFloorList.Count}\n";
-            text += $"Fails: {gameInfo.resultStat.FailFloorList.Count}\n";
-            text += $"Total: {gameInfo.resultStat.Total}\n";
-            text += $"SuccessRate: {(float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total * 100}%\n";
-            text += "=====Timer=====\n";
-            text += $"StartTime: {gameInfo.startTime}\n";
-            text += $"TotalTime: {gameInfo.timeTotal}\n";
-            debugText.text = text;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Started: {gameInfo.isStart}");
+            sb.AppendLine("=====ElevatorInfo=====");
+            sb.AppendLine($"CurrentFloor: {elevator.CurrentFloor}/{elevator.TopFloor}");
+            sb.AppendLine($"TargetFloor: {elevator.TargetFloor}");
+            sb.AppendLine($"IsMoving: {elevator.IsMoving}");
+            sb.AppendLine($"ElevatorDoorOpened: {elevator.Door.IsOpen}");
+            sb.AppendLine($"TimeToNextFloor: {elevator.TimeToNextFloor}");
+            sb.AppendLine($"ResidentEventProbability: {elevator.ResidentEventProbability}");
+            sb.AppendLine("=====ResultStat=====");
+            sb.AppendLine($"Score: {gameInfo.score}");
+            sb.AppendLine($"Success: {gameInfo.resultStat.SuccessFloorList.Count}");
+            sb.AppendLine($"Fails: {gameInfo.resultStat.FailFloorList.Count}");
+            sb.AppendLine($"Total: {gameInfo.resultStat.Total}");
+            sb.AppendLine($"SuccessRate: {(float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total * 100}%");
+            sb.AppendLine("=====Timer=====");
+            sb.AppendLine($"StartTime: {gameInfo.startTime}");
+            sb.AppendLine($"TotalTime: {gameInfo.timeTotal}");
+            debugText.text = sb.ToString();
         }
     }
 

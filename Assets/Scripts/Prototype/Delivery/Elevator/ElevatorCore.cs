@@ -87,6 +87,7 @@ namespace Prototype.Delivery.Elevator
 
             if (targetFloors.Contains(currentFloor))
             {
+                Debug.Log("Arrived");
                 targetFloors.Remove(currentFloor);
                 isArrival = true;
             }
