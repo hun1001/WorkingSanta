@@ -39,16 +39,11 @@ namespace Prototype.Delivery
 
     public class GameInfo
     {
-        private ResultStat resultStat = new ResultStat();
+        private ResultStat resultStat {set; public get;} = new ResultStat();
         public int score = 0;
         public bool isStart = false;
         public float startTime = 5f;
         public float timeTotal = 0f;
-
-        public ResultStat GetResultStat()
-        {
-            return resultStat;
-        }
 
         public void CopyInfo(GameInfo info)
         {
