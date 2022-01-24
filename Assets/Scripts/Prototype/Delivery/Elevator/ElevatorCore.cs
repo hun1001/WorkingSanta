@@ -110,6 +110,7 @@ namespace Prototype.Delivery.Elevator
             }
             else
             {
+                isMoving = false;
                 StartCoroutine(MoveElevatorCoroutine());
             }
         }

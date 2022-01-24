@@ -16,12 +16,15 @@ namespace Prototype.Delivery.Elevator
 
             for (int i = 0; i < floorButtons.Length; i++)
             {
-                floorButtons[i].onValueChanged.AddListener((value) => OnValueChanged(i, value));
+                int temp = i;
+                floorButtons[i].onValueChanged.AddListener((value) => OnValueChanged(temp, value));
+                Debug.Log("Added listener to " + i);
             }
         }
 
         private void OnValueChanged(int index, bool value)
         {
+            Debug.Log("OnValueChanged: " + index + " " + value);
             if (value)
             {
                 DeliveryManager.Instance.Elevator.AddTargetFloor(index + 1);
