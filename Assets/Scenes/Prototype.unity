@@ -2325,6 +2325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d043b1ae69e7e3746b3b5c9bef876a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowUp: {fileID: 0}
+  arrowDown: {fileID: 0}
 --- !u!1 &808626237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,7 +5065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8692225f5f2b44b8c63cad915264cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorListContent: {fileID: 0}
   floorList: {fileID: 478844888}
   elevator: {fileID: 744538893}
   targetHomes:
@@ -5085,6 +5086,7 @@ MonoBehaviour:
   - Floor: 10
     Direction: 2
     IsSuccess: 0
+  targetElementPrefab: {fileID: 7135111353154771133, guid: 2a280cd7a0703ce4ca706a3eed0e3f5b, type: 3}
 --- !u!114 &1656534602
 MonoBehaviour:
   m_ObjectHideFlags: 0

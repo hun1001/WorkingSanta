@@ -62,15 +62,15 @@ namespace Prototype.Delivery
         public ElevatorCore Elevator { get { return elevator; } }
         public GameInfo GameInfo { get { return gameInfo; } }
 
-        [SerializeField] Text floorListContent;
         [SerializeField] CanvasGroup floorList;
         [SerializeField] ElevatorCore elevator;
         [SerializeField] HomeElement[] targetHomes;
-        
+        [SerializeField] GameObject targetElementPrefab;
+
         GameInfo gameInfo = new GameInfo();
 
         private int targetIndex = 0;
-        
+
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -88,7 +88,10 @@ namespace Prototype.Delivery
 
             foreach (var home in targetHomes)
             {
-                floorListContent.text += $"{home.Floor}{((int)home.Direction).ToString("00")}호\n";
+                //floorListContent.text += $"{home.Floor}{((int)home.Direction).ToString("00")}호\n";
+                GameObject target = Instantiate(targetElementPrefab, floorList.transform.GetChild(1).GetChild(0).GetChild(0));
+                target.transform.GetChild(0).GetComponent<Text>().text = $"{home.Floor}{((int)home.Direction).ToString("00")}호";
+                //target.transform.GetChild(1).GetComponent<Image>().sprite = 
             }
         }
 
