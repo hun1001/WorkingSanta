@@ -1,18 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParcelManager : MonoBehaviour
+namespace Prototype.Delivery
 {
-    [SerializeField]
-    private GameObject parcelPrefab;
-
-    [SerializeField]
-    private Transform spawnPoint;
-
-
-    void Start()
+    public enum ParcelType
     {
-
+        A,
+        B,
+        C,
+        D,
+        E
     }
+
+    [Serializable]
+    public class ParcelElement
+    {
+        public ParcelType Type;
+        public Sprite Sprite;
+    }
+
+    public class ParcelManager : MonoBehaviour
+    {
+        [SerializeField] List<ParcelElement> parcelTypes;
+        [SerializeField] GameObject parcelPrefab;
+        [SerializeField] Transform spawnPoint;
+
+
+        void Start()
+        {
+
+        }
+}
 }
