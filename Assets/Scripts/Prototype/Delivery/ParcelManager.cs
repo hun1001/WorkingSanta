@@ -13,9 +13,6 @@ public class ParcelManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            GameObject parcel = Instantiate(parcelPrefab, spawnPoint);
-        }
+
     }
 }
