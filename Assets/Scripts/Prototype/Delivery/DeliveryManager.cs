@@ -11,7 +11,9 @@ namespace Prototype.Delivery
     public enum Direction
     {
         Left = 1,
-        Right = 2
+        Right = 2,
+        Up = 3,
+        Down = 4
     }
 
     public class ResultStat
@@ -112,7 +114,6 @@ namespace Prototype.Delivery
                 {
                     gameInfo.isStart = true;
                     gameInfo.startTime = 5f;
-                    elevator.TargetFloor = elevator.TopFloor;
                     elevator.MoveElevator();
                 }
             }
