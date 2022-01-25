@@ -13,35 +13,24 @@ namespace Prototype.Delivery.Elevator
 
         public ElevatorDoor Door { get { return door; } }
         public int TopFloor { get { return topFloor; } set { topFloor = value; } }
-        public int TargetFloor
-        {
-            get
-            {
-                return targetFloor;
-            }
-            set
-            {
-                targetFloor = value;
-                MoveElevator();
-            }
-        }
         public int CurrentFloor { get { return currentFloor; } }
         public float TimeToNextFloor { get { return timeToNextFloor; } }
-        public float ResidentEventProbability { get { return residentEventProbability; } }
+        public float ResidentEventProbability { get { return residentEventProbability; } set { residentEventProbability = value; } }
         public bool IsMoving { get { return isMoving; } }
+        public Direction Direction { get { return direction; } }
 
         [SerializeField] int topFloor = 30;
-        [SerializeField] Text elavatorFloor;
+        [SerializeField] Text elevatorFloor;
         [SerializeField] ElevatorDoor door;
         [SerializeField] ElevatorFloorButton floorButton;
         [SerializeField] float timeToNextFloor = 1f;
         [SerializeField] Text apartFloor;
 
         private int currentFloor = 1;
-        private int targetFloor = 1;
         private float residentEventProbability = 0.3f;
         private bool isMoving = false;
         private List<int> targetFloors = new List<int>();
+        private Direction direction = Direction.Up;
 
         private void SetBuilding(BuildingElement building)
         {
@@ -50,7 +39,7 @@ namespace Prototype.Delivery.Elevator
 
         private void UpdateUI()
         {
-            elavatorFloor.text = $"{currentFloor}";
+            elevatorFloor.text = $"{currentFloor}";
             apartFloor.text = $"{currentFloor}";
         }
 
@@ -73,33 +62,54 @@ namespace Prototype.Delivery.Elevator
         {
             if (isMoving) yield break;
             isMoving = true;
-            if (targetFloor == currentFloor) yield break;
+
+            if (direction.Equals(Direction.Up) && currentFloor.Equals(topFloor)) yield break;
+            if (direction.Equals(Direction.Down) && currentFloor.Equals(1)) yield break;
+
             if (door.IsOpen)
             {
                 yield return door.CloseCoroutine();
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(timeToNextFloor);
 
-            currentFloor++;
+            if (direction.Equals(Direction.Up))
+            {
+                currentFloor++;
+            }
+            else
+            {
+                currentFloor--;
+            }
 
             UpdateUI();
 
             bool isArrival = false;
+            float random = UnityEngine.Random.Range(0f, 1f);
+            Debug.Log("random : " + random);
 
             if (targetFloors.Contains(currentFloor))
             {
                 targetFloors.Remove(currentFloor);
                 isArrival = true;
             }
-            else if (UnityEngine.Random.Range(0, 1) < residentEventProbability)
+            else if (direction.Equals(Direction.Down) && random < residentEventProbability)
             {
                 Debug.Log("ResidentEvent");
                 isArrival = true;
             }
-            else if (currentFloor == targetFloor)
+            else if (currentFloor >= topFloor)
             {
+                direction = Direction.Down;
                 isArrival = true;
+            }
+            else if (currentFloor <= 1)
+            {
+                direction = Direction.Up;
+                StartCoroutine(door.OpenCoroutine());
+                isMoving = false;
+                DeliveryManager.Instance.GameInfo.isStart = false;
+                yield break;
             }
 
             if (isArrival)

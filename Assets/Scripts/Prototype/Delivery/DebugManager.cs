@@ -26,11 +26,11 @@ namespace Prototype.Delivery
             sb.AppendLine($"Started: {gameInfo.isStart}");
             sb.AppendLine("=====ElevatorInfo=====");
             sb.AppendLine($"CurrentFloor: {elevator.CurrentFloor}/{elevator.TopFloor}");
-            sb.AppendLine($"TargetFloor: {elevator.TargetFloor}");
             sb.AppendLine($"IsMoving: {elevator.IsMoving}");
             sb.AppendLine($"ElevatorDoorOpened: {elevator.Door.IsOpen}");
             sb.AppendLine($"TimeToNextFloor: {elevator.TimeToNextFloor}");
             sb.AppendLine($"ResidentEventProbability: {elevator.ResidentEventProbability}");
+            sb.AppendLine($"Direction: {elevator.Direction}");
             sb.AppendLine("=====ResultStat=====");
             sb.AppendLine($"Score: {gameInfo.score}");
             sb.AppendLine($"Success: {gameInfo.resultStat.SuccessFloorList.Count}");
