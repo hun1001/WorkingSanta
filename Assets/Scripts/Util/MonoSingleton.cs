@@ -9,7 +9,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
         get{
             if (shuttingDown)
             {
-                Debug.LogWarning("[Singleton] Instance " + typeof(T) + " already CHOIed. Returning null.");
+                Debug.LogWarning("[Singleton] Instance " + typeof(T) + " already destroyed. Returning null.");
                 return null;
             }
             lock (locker)

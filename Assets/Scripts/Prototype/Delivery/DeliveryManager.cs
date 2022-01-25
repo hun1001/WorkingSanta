@@ -66,7 +66,6 @@ namespace Prototype.Delivery
         [SerializeField] CanvasGroup floorList;
         [SerializeField] ElevatorCore elevator;
         [SerializeField] HomeElement[] targetHomes;
-
         
         GameInfo gameInfo = new GameInfo();
 
