@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Prototype;
+using UnityEngine.SceneManagement;
 
 namespace Prototype_Main
 {
@@ -14,7 +15,8 @@ namespace Prototype_Main
 
         private void OnDeliveryStart()
         {
-            Debug.Log("Delivery Start");
+            //road other scene
+            SceneManager.LoadScene("Prototype");
         }
     }
 }
