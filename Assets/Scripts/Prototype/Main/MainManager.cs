@@ -102,6 +102,16 @@ namespace Prototype_Main
             UIManager.Instance.tutoPanelToggle();
         }
 
+        private void OnGameExitButton()
+        {
+
+        }
+
+        private void OnGameRestartButton()
+        {
+
+        }
+
         #region 상점 버튼
         private void OnPI()
         {
