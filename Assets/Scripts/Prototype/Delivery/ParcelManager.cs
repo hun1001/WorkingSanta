@@ -58,8 +58,8 @@ namespace Prototype.Delivery
                 targetHomes.Add(new HomeElement() 
                 { 
                     Floor = floorList[target],
-                    Type = (ParcelType)UnityEngine.Random.Range(0, 4),
-                    Direction = (Direction)UnityEngine.Random.Range(1, 2)
+                    Type = (ParcelType)UnityEngine.Random.Range(0, 5),
+                    Direction = (Direction)UnityEngine.Random.Range(1, 3)
                 });
                 floorList.RemoveAt(target);
             }
