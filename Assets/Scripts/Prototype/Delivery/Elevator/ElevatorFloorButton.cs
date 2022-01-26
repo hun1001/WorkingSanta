@@ -9,16 +9,26 @@ namespace Prototype.Delivery.Elevator
 {
     public class ElevatorFloorButton : MonoBehaviour
     {
-        [SerializeField] private Button exitButton;
-        [SerializeField] private Toggle[] floorButtons;
+        [SerializeField] Button exitButton;
+        [SerializeField] List<Toggle> floorButtons;
+        [SerializeField] RectTransform buttonPadList;
+        [SerializeField] GameObject buttonPrefab;
 
         private List<HomeElement> targetHome;
 
         private void Awake()
         {
+            for (int i = 1; i <= DeliveryManager.Instance.Elevator.TopFloor; i++)
+            {
+                var button = Instantiate(buttonPrefab, buttonPadList);
+                button.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
+                button.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = i.ToString();
+                floorButtons.Add(button.GetComponent<Toggle>());
+            }
+
             ButtonManager.Instance.AddHandler(this);
             targetHome = ParcelManager.Instance.TargetHomes;
-            for (int i = 0; i < floorButtons.Length; i++)
+            for (int i = 0; i < floorButtons.Count; i++)
             {
                 int temp = i;
                 floorButtons[i].onValueChanged.AddListener((value) => OnValueChanged(temp, value));

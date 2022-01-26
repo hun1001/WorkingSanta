@@ -36,6 +36,7 @@ namespace Prototype.Delivery
         [SerializeField] CanvasGroup floorList;
         [SerializeField] List<HomeElement> targetHomes;
         [SerializeField] GameObject targetElementPrefab;
+        [SerializeField] RectTransform targetList;
 
         private void Awake()
         {
@@ -69,7 +70,7 @@ namespace Prototype.Delivery
 
             foreach (var home in targetHomes)
             {
-                GameObject parcel = Instantiate(targetElementPrefab, this.floorList.transform.GetChild(1).GetChild(0).GetChild(0));
+                GameObject parcel = Instantiate(targetElementPrefab, targetList);
                 parcel.transform.GetChild(0).GetComponent<Text>().text = $"{home.Floor}{((int)home.Direction).ToString("00")}호";
                 parcel.transform.GetChild(1).GetComponent<Image>().sprite = pManager.ParcelTypes.Find(x => x.Type == home.Type).Sprite;
 
@@ -86,10 +87,10 @@ namespace Prototype.Delivery
 
         private void UpdateFloorList()
         {
-            for (int i = 0; i < this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount; i++)
+            for (int i = 0; i < targetList.childCount; i++)
             {
-                var child = this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(i);
-                child.SetSiblingIndex(UnityEngine.Random.Range(0, this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount));
+                var child = targetList.GetChild(i);
+                child.SetSiblingIndex(UnityEngine.Random.Range(0, targetList.childCount));
             }
         }
 
