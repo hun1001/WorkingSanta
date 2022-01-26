@@ -14,10 +14,8 @@ public class ElevatorArrow : MonoBehaviour
 
     private Image image;
 
-    private 
     void Start()
     {
-        image = GetComponent<Image>();
         EventManager.StartListening("ElevatorUp", ElevatorUp);
         EventManager.StartListening("ElevatorDown", ElevatorDown);
         EventManager.StartListening("ElevatorStop", ElevatorStop);
@@ -25,16 +23,26 @@ public class ElevatorArrow : MonoBehaviour
 
     private void ElevatorStop()
     {
+        image = GetComponent<Image>();
         image.sprite = null;
     }
 
     private void ElevatorUp()
     {
+        image = GetComponent<Image>();
         image.sprite = arrowUp;
     }
 
     private void ElevatorDown()
     {
+        image = GetComponent<Image>();
         image.sprite = arrowDown;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("ElevatorUp", ElevatorUp);
+        EventManager.StopListening("ElevatorDown", ElevatorDown);
+        EventManager.StopListening("ElevatorStop", ElevatorStop);
     }
 }
