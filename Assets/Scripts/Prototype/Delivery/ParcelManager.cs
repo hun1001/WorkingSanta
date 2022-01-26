@@ -53,7 +53,7 @@ namespace Prototype.Delivery
                 floorList.Add(i);
             }
 
-            for (int i = 0; i < DeliveryManager.Instance.Elevator.TopFloor / 3; i++)
+            for (int i = 0; i < DeliveryManager.Instance.Elevator.TopFloor - 2; i++)
             {
                 var target = UnityEngine.Random.Range(0, floorList.Count);
                 targetHomes.Add(new HomeElement() 
@@ -80,6 +80,17 @@ namespace Prototype.Delivery
                 box.transform.SetSiblingIndex(UnityEngine.Random.Range(0, inventoryGroup.transform.childCount));
             }
             OpenFloorList();
+
+            InvokeRepeating("UpdateFloorList", 1, 1);
+        }
+
+        private void UpdateFloorList()
+        {
+            for (int i = 0; i < this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount; i++)
+            {
+                var child = this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(i);
+                child.SetSiblingIndex(UnityEngine.Random.Range(0, this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount));
+            }
         }
 
         public void OnDrop(DragItem dragItem, Direction direction)
