@@ -26,6 +26,7 @@ namespace Prototype.Delivery
     public class ParcelManager : MonoSingleton<ParcelManager>
     {
         public List<ParcelElement> ParcelTypes { get { return parcelTypes; } }
+        public List<HomeElement> TargetHomes { get { return targetHomes; } }
 
         [SerializeField] CanvasGroup inventoryGroup;
         [SerializeField] GameObject boxPrefab;

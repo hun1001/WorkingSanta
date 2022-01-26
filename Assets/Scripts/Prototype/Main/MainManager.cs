@@ -13,7 +13,9 @@ namespace Prototype_Main
         private Image AlbaIcon;
         [SerializeField]
         private Sprite Delivery;
-
+        [SerializeField]
+        private Text wnd;
+        private bool weekwork = false;
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -27,6 +29,27 @@ namespace Prototype_Main
         private void OnApplyD()
         {
             AlbaIcon.sprite = Delivery;
+        }
+        private void OnShop()
+        {
+
+        }
+        private void OnAlba()
+        {
+
+        }
+        private void OnWeekendAlba()
+        {
+            if(!weekwork)
+            {
+                weekwork = true;
+                wnd.text = "주말포함";
+            }
+            else
+            {
+                weekwork = false;
+                wnd.text = "평일알바";
+            }
         }
     }
 }
