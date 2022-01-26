@@ -13,23 +13,24 @@ public enum Item : int
     Rayder = 1 << 4,
 } 
 
-public class CharacterStat : MonoSingleton<CharacterStat>
+public static class CharacterStat
 {
-    public Item Items = Item.None;
-    public int RemainingDays = 0;
-    public int Money = 0;
+    public static int hp = 100;
+    public static Item Items = Item.None;
+    public static int RemainingDays = 0;
+    public static int Money = 0;
 
-    public void AddItem(Item item)
+    public static void AddItem(Item item)
     {
         Items |= item;
     }
 
-    public void RemoveItem(Item item)
+    public static void RemoveItem(Item item)
     {
         Items &= ~item;
     }
 
-    public bool HasItem(Item item)
+    public static bool HasItem(Item item)
     {
         return (Items & item) == item;
     }

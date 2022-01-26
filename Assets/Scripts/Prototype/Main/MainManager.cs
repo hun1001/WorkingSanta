@@ -18,7 +18,7 @@ namespace Prototype_Main
         [SerializeField]
         private GameObject ShopScroll;
         private bool weekwork = false;
-        private int hp = 100;
+        
 
         private void Awake()
         {
@@ -29,10 +29,11 @@ namespace Prototype_Main
         private void OnDeliveryStart()
         {
             if (!weekwork)
-                hp -= 40;
+                CharacterStat.Instance.hp -= 40;
             else
-                hp -= 56;
+                CharacterStat.Instance.hp -= 56;
             //road other scene
+            
             SceneManager.LoadScene("Prototype");
         }
         private void OnApplyD()
