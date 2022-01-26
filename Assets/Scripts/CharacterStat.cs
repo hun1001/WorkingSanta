@@ -56,4 +56,12 @@ public static class CharacterStat
         RemainingDays = PlayerPrefs.GetInt("RemainingDays", RemainingDays);
         Money = PlayerPrefs.GetInt("Money", Money);
     }
+
+    public static void Reset()
+    {
+        Hp = 100;
+        Items = Item.None;
+        RemainingDays = 357;
+        Money = 0;
+    }
 }

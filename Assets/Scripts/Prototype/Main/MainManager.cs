@@ -11,7 +11,7 @@ namespace Prototype_Main
 {
     public class MainManager : MonoBehaviour
     {
-        public static bool Weekwork; 
+        public static bool Weekwork;
 
         [SerializeField]
         private Image AlbaIcon;
@@ -25,7 +25,7 @@ namespace Prototype_Main
         private CanvasGroup endingGroup;
 
         private bool weekwork = false;
-        
+
 
         private void Awake()
         {
@@ -92,7 +92,7 @@ namespace Prototype_Main
         }
         private void OnWeekendAlba()
         {
-            if(!weekwork)
+            if (!weekwork)
             {
                 weekwork = true;
                 wnd.text = "주말포함";
@@ -117,12 +117,19 @@ namespace Prototype_Main
 
         private void OnGameExitButton()
         {
-
+            CharacterStat.SaveData();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         private void OnGameRestartButton()
         {
-
+            CharacterStat.Reset();
+            CharacterStat.SaveData();
+            SceneManager.LoadScene("SampleScene");
         }
 
         #region 상점 버튼
