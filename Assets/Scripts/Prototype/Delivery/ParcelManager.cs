@@ -81,17 +81,6 @@ namespace Prototype.Delivery
                 box.transform.SetSiblingIndex(UnityEngine.Random.Range(0, inventoryGroup.transform.childCount));
             }
             OpenFloorList();
-
-            InvokeRepeating("UpdateFloorList", 1, 1);
-        }
-
-        private void UpdateFloorList()
-        {
-            for (int i = 0; i < targetList.childCount; i++)
-            {
-                var child = targetList.GetChild(i);
-                child.SetSiblingIndex(UnityEngine.Random.Range(0, targetList.childCount));
-            }
         }
 
         public void OnDrop(DragItem dragItem, Direction direction)
