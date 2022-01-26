@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 56135142179667932}
   - component: {fileID: 56135142179667935}
   - component: {fileID: 1323046412}
+  - component: {fileID: 1934894143}
   m_Layer: 5
   m_Name: Box
   m_TagString: Untagged
@@ -101,9 +102,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3a02d9fd2f9064994823a6d34db072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parcelSprite:
-  - {fileID: -7339149984724004702, guid: 7576952cfb07468408d1c490761a7666, type: 3}
-  - {fileID: 6197928473673509263, guid: 7576952cfb07468408d1c490761a7666, type: 3}
-  - {fileID: 5729655590360138071, guid: 7576952cfb07468408d1c490761a7666, type: 3}
-  - {fileID: 7889843355154999969, guid: 7576952cfb07468408d1c490761a7666, type: 3}
-  - {fileID: -771531970694122940, guid: 7576952cfb07468408d1c490761a7666, type: 3}
+  type: 0
+--- !u!114 &1934894143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56135142179667929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3a02d9fd2f9064994823a6d34db072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

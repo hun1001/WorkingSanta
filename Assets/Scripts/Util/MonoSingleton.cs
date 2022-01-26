@@ -3,7 +3,7 @@ using UnityEngine;
 public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
     private static bool shuttingDown = false;
-    protected static T instance = null;
+    private static T instance = null;
     private static object locker = new object();
     public static T Instance{
         get{
@@ -22,7 +22,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
                         instance = new GameObject(typeof(T).ToString(), typeof(T)).GetComponent<T>();
                     }
 
-                    DontDestroyOnLoad(instance);
+                    // DontDestroyOnLoad(instance);
                 }
             }
             

@@ -5069,21 +5069,27 @@ MonoBehaviour:
   elevator: {fileID: 744538893}
   targetHomes:
   - Floor: 2
+    Type: 0
     Direction: 1
     IsSuccess: 0
   - Floor: 4
+    Type: 1
     Direction: 2
     IsSuccess: 0
   - Floor: 5
+    Type: 0
     Direction: 2
     IsSuccess: 0
   - Floor: 7
+    Type: 4
     Direction: 1
     IsSuccess: 0
   - Floor: 9
+    Type: 2
     Direction: 2
     IsSuccess: 0
   - Floor: 10
+    Type: 3
     Direction: 2
     IsSuccess: 0
   targetElementPrefab: {fileID: 7135111353154771133, guid: 2a280cd7a0703ce4ca706a3eed0e3f5b, type: 3}

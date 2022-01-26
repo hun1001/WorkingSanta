@@ -27,6 +27,7 @@ namespace Prototype.Delivery
     public class HomeElement
     {
         public int Floor;
+        public ParcelType Type;
         public Direction Direction;
         public bool IsSuccess;
     }
@@ -62,45 +63,19 @@ namespace Prototype.Delivery
         public ElevatorCore Elevator { get { return elevator; } }
         public GameInfo GameInfo { get { return gameInfo; } }
 
-        [SerializeField] CanvasGroup floorList;
         [SerializeField] ElevatorCore elevator;
-        [SerializeField] HomeElement[] targetHomes;
-        [SerializeField] GameObject targetElementPrefab;
 
         GameInfo gameInfo = new GameInfo();
-
-        private int targetIndex = 0;
 
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
-
-            floorList.alpha = 0;
-            floorList.blocksRaycasts = false;
         }
 
         private void Start()
         {
             //TODO: 시작 전 건물 선택
-            OpenFloorList();
             elevator.Door.Open();
-            elevator.OnElevatorArrival += OnElevatorArrival;
-
-            foreach (var home in targetHomes)
-            {
-                //floorListContent.text += $"{home.Floor}{((int)home.Direction).ToString("00")}호\n";
-                GameObject target = Instantiate(targetElementPrefab, floorList.transform.GetChild(1).GetChild(0).GetChild(0));
-                target.transform.GetChild(0).GetComponent<Text>().text = $"{home.Floor}{((int)home.Direction).ToString("00")}호";
-                //target.transform.GetChild(1).GetComponent<Image>().sprite = 
-            }
-        }
-
-        private void OnElevatorArrival(int floor)
-        {
-            if (targetHomes[targetIndex].Floor == floor)
-            {
-                targetIndex++;
-            }
         }
 
         private void Update()
@@ -119,23 +94,6 @@ namespace Prototype.Delivery
                     elevator.MoveElevator();
                 }
             }
-        }
-
-        public void OpenFloorList()
-        {
-            floorList.DOFade(1, 0.5f);
-            floorList.blocksRaycasts = true;
-        }
-
-        public void CloseFloorList()
-        {
-            floorList.DOFade(0, 0.5f);
-            floorList.blocksRaycasts = false;
-        }
-
-        private void OnCloseFloorListButton()
-        {
-            CloseFloorList();
         }
     }
 }

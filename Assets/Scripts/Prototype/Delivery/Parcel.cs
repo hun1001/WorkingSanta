@@ -7,13 +7,23 @@ namespace Prototype.Delivery
 {
     public class Parcel : MonoBehaviour
     {
+        public ParcelType Type { get { return type; } set { type = value; } }
+        
+        [SerializeField] ParcelType type;
+
         private Image image;
 
         private int address;
 
-        void Start()
+        private void Awake()
         {
             image = GetComponent<Image>();
+            image.sprite = ParcelManager.Instance.ParcelTypes.Find(x => x.Type == type).Sprite;
+        }
+
+        public void UpdateBox()
+        {
+            image.sprite = ParcelManager.Instance.ParcelTypes.Find(x => x.Type == type).Sprite;
         }
     }
 }
