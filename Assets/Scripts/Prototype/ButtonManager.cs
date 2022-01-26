@@ -8,6 +8,8 @@ namespace Prototype
 {
     public class ButtonManager : MonoSingleton<ButtonManager>
     {
+        public List<Button> HandledButtonList = new List<Button>();
+
         [System.Serializable]
         public class ButtonInfo
         {
@@ -25,7 +27,7 @@ namespace Prototype
                 var buttonInfo = _buttonInfos.Find(x => x.button == button);
                 if (buttonInfo == null)
                 {
-                    if (button.onClick == null)
+                    if (!HandledButtonList.Contains(button))
                     {
                         Debug.LogError("등록되어있지 않은 버튼이 있습니다: " + GetGameObjectPath(button.gameObject));
                     }

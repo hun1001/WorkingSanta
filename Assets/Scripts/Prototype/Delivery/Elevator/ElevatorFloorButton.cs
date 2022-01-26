@@ -18,7 +18,6 @@ namespace Prototype.Delivery.Elevator
             {
                 int temp = i;
                 floorButtons[i].onValueChanged.AddListener((value) => OnValueChanged(temp, value));
-                Debug.Log("Added listener to " + i);
             }
         }
 

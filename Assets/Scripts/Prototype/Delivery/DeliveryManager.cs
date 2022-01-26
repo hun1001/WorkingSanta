@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Prototype.Delivery.Elevator;
+using UnityEngine.SceneManagement;
 
 namespace Prototype.Delivery
 {
@@ -108,6 +109,11 @@ namespace Prototype.Delivery
             {
                 gameInfo.resultStat.FailFloorList.Add(elevator.CurrentFloor);
             }
+        }
+
+        private void OnGotoMain()
+        {
+            SceneManager.LoadScene("Main");
         }
     }
 }
