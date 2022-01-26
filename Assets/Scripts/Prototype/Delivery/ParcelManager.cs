@@ -61,6 +61,7 @@ namespace Prototype.Delivery
                     Type = (ParcelType)UnityEngine.Random.Range(0, 4),
                     Direction = (Direction)UnityEngine.Random.Range(1, 2)
                 });
+                floorList.RemoveAt(target);
             }
 
             ParcelManager pManager = ParcelManager.Instance;
@@ -77,6 +78,19 @@ namespace Prototype.Delivery
                 boxParcel.UpdateBox();
             }
             OpenFloorList();
+        }
+
+        public void OnDrop(DragItem dragItem, Direction direction)
+        {
+            Destroy(dragItem.gameObject);
+            var parcel = targetHomes.Find(x => x.Floor == DeliveryManager.Instance.Elevator.CurrentFloor && x.Direction == direction);
+            if (parcel == null)
+            {
+                DeliveryManager.Instance.OnDelivery(false);
+                return;
+            }
+            targetHomes.RemoveAt(targetHomes.IndexOf(parcel));
+            DeliveryManager.Instance.OnDelivery(true);
         }
 
         public void OpenFloorList()
