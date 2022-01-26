@@ -403,7 +403,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146822578}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -4822,6 +4822,8 @@ MonoBehaviour:
     button: {fileID: 165494827}
   - name: GotoMain
     button: {fileID: 2033546737}
+  - name: RestartGame
+    button: {fileID: 2134906764}
 --- !u!114 &1656534603
 MonoBehaviour:
   m_ObjectHideFlags: 0
