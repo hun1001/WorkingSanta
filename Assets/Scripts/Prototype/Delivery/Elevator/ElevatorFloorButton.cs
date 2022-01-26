@@ -26,12 +26,17 @@ namespace Prototype.Delivery.Elevator
 
         private void CheckSelectButton()
         {
+            int cnt = 0;
             foreach(var home in targetHome)
             {
                 if(floorButtons[home.Floor] == true)
                 {
-
+                    cnt++;
                 }
+            }
+            if(cnt == targetHome.Count)
+            {
+                CloseButtonPad();
             }
         }
 
