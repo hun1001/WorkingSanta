@@ -95,5 +95,18 @@ namespace Prototype.Delivery
                 }
             }
         }
+
+        public void OnDelivery(bool isSuccess)
+        {
+            gameInfo.resultStat.Total++;
+            if (isSuccess)
+            {
+                gameInfo.resultStat.SuccessFloorList.Add(elevator.CurrentFloor);
+            }
+            else
+            {
+                gameInfo.resultStat.FailFloorList.Add(elevator.CurrentFloor);
+            }
+        }
     }
 }

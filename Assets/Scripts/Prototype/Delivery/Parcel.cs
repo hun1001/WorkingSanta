@@ -18,7 +18,6 @@ namespace Prototype.Delivery
         private void Awake()
         {
             image = GetComponent<Image>();
-            image.sprite = ParcelManager.Instance.ParcelTypes.Find(x => x.Type == type).Sprite;
         }
 
         public void UpdateBox()
