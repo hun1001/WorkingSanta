@@ -4,6 +4,7 @@ using Prototype.Delivery.Elevator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Prototype_Main;
 
 namespace Prototype.Delivery.Elevator
 {
@@ -17,7 +18,7 @@ namespace Prototype.Delivery.Elevator
 
         private void Awake()
         {
-            for (int i = 1; i <= DeliveryManager.Instance.Elevator.TopFloor; i++)
+            for (int i = 1; i <= ((MainManager.Weekwork) ? 15 : 10); i++)
             {
                 var button = Instantiate(buttonPrefab, buttonPadList);
                 button.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
