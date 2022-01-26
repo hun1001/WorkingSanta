@@ -49,6 +49,7 @@ namespace Prototype.Delivery
         public bool isStart = false;
         public float startTime = 5f;
         public float timeTotal = 0f;
+        public bool isEnd = false;
 
         public void CopyInfo(GameInfo info)
         {
@@ -66,6 +67,10 @@ namespace Prototype.Delivery
         public GameInfo GameInfo { get { return gameInfo; } }
 
         [SerializeField] ElevatorCore elevator;
+        [SerializeField] CanvasGroup resultCanvas;
+        [SerializeField] GameObject resultTextPrefab;
+        [SerializeField] GameObject resultLinePrefab;
+        [SerializeField] RectTransform resultTextParent;
 
         GameInfo gameInfo = new GameInfo();
 
@@ -82,6 +87,8 @@ namespace Prototype.Delivery
 
         private void Update()
         {
+            if(gameInfo.isEnd) return;
+
             if (gameInfo.isStart)
             {
                 gameInfo.timeTotal += Time.deltaTime;
@@ -114,6 +121,45 @@ namespace Prototype.Delivery
         private void OnGotoMain()
         {
             SceneManager.LoadScene("Main");
+        }
+
+        internal void OnGameOver()
+        {
+            gameInfo.isStart = false;
+            gameInfo.isEnd = true;
+
+            StartCoroutine(GameOverCoroutine());
+        }
+
+        private IEnumerator GameOverCoroutine()
+        {
+            resultCanvas.DOFade(1f, 1f);
+            yield return new WaitForSeconds(1f);
+            var item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"택배 수 : {gameInfo.resultStat.Total}개";
+            yield return new WaitForSeconds(0.5f);
+
+            item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"성공 횟수 : {gameInfo.resultStat.SuccessFloorList.Count}회";
+            yield return new WaitForSeconds(0.5f);
+
+            item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"실패 횟수 : {gameInfo.resultStat.FailFloorList.Count}회";
+            yield return new WaitForSeconds(0.5f);
+
+            item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"성공률 : {((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total * 100).ToString("00")}%";
+            yield return new WaitForSeconds(0.5f);
+
+            item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"총 소요 시간 : {gameInfo.timeTotal.ToString("0")}초";
+            yield return new WaitForSeconds(0.5f);
+
+            Instantiate(resultLinePrefab, resultTextParent);
+            yield return new WaitForSeconds(1f);
+
+            item = Instantiate(resultTextPrefab, resultTextParent);
+            item.GetComponent<Text>().text = $"수익: {gameInfo.score}원";
         }
     }
 }

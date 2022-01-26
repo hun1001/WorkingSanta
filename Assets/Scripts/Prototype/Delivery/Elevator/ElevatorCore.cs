@@ -62,15 +62,19 @@ namespace Prototype.Delivery.Elevator
 
         private IEnumerator MoveElevatorCoroutine()
         {
+            if (direction == Direction.None) yield break;
+
             if (targetFloors.Count <= 0) 
             {
                 direction = Direction.None;
                 yield break;
             }
             if (isMoving) yield break;
+            
             isMoving = true;
 
             if (direction.Equals(Direction.Up) && currentFloor.Equals(topFloor)) yield break;
+
             if (direction.Equals(Direction.Down) && currentFloor.Equals(1)) yield break;
 
             if (door.IsOpen)
@@ -116,7 +120,7 @@ namespace Prototype.Delivery.Elevator
                     direction = Direction.Up;
                     StartCoroutine(door.OpenCoroutine());
                     isMoving = false;
-                    DeliveryManager.Instance.GameInfo.isStart = false;
+                    DeliveryManager.Instance.OnGameOver();
                     yield break;
                 }
             }
