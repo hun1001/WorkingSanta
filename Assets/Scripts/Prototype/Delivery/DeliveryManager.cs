@@ -81,7 +81,6 @@ namespace Prototype.Delivery
 
         private void Start()
         {
-            Elevator.TopFloor = UnityEngine.Random.Range(10, 20);
             elevator.Door.Open();
             elevator.Door.DisableAutoClose();
         }
