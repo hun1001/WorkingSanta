@@ -5598,6 +5598,7 @@ GameObject:
   - component: {fileID: 1074112354}
   - component: {fileID: 1074112356}
   - component: {fileID: 1074112355}
+  - component: {fileID: 1074112357}
   m_Layer: 5
   m_Name: EndingPanel
   m_TagString: Untagged
@@ -5665,6 +5666,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074112353}
   m_CullTransparentMesh: 1
+--- !u!225 &1074112357
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074112353}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1093817406
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,6 +9129,7 @@ MonoBehaviour:
   Delivery: {fileID: -7339149984724004702, guid: 7576952cfb07468408d1c490761a7666, type: 3}
   wnd: {fileID: 1710824903}
   ShopScroll: {fileID: 167468885}
+  endingGroup: {fileID: 1074112357}
 --- !u!114 &1719177430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9555,7 +9569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -687.71}
+  m_AnchoredPosition: {x: 0, y: -687.70996}
   m_SizeDelta: {x: 0, y: -1375.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1792599513
