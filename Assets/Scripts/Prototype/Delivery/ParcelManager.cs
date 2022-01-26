@@ -77,6 +77,7 @@ namespace Prototype.Delivery
                 var boxParcel = box.GetComponent<Parcel>();
                 boxParcel.Type = home.Type;
                 boxParcel.UpdateBox();
+                box.transform.SetSiblingIndex(UnityEngine.Random.Range(0, inventoryGroup.transform.childCount));
             }
             OpenFloorList();
         }
