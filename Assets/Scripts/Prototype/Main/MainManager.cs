@@ -40,6 +40,14 @@ namespace Prototype_Main
 
         private IEnumerator Ending()
         {
+            if(CharacterStat.Money >= 500)
+            {
+                endingGroup.gameObject.transform.GetChild(0).GetComponent<Text>().text = "게임 클리어\n\n당신은 불경기에도 돈은 모아\n어린이들에게 꿈과 희망을 전하는데\n성공하셨습니다.";
+            }
+            else
+            {
+                endingGroup.gameObject.transform.GetChild(0).GetComponent<Text>().text = "최선을 다하여 돈을 번 당신이지만 자본의 벽은 높았습니다.\n어린아이들에게 선물을 전달하지 못하였지만 아이들은\n자신들이 나빴기 때문이라며 자책하는군요, 당신의 탓은 아닌가봅니다.";
+            }
             yield return new WaitForSeconds(1f);
             endingGroup.DOFade(1f, 1f);
         }
