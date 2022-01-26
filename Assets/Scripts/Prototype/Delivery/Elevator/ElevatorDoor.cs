@@ -18,6 +18,15 @@ namespace Prototype.Delivery.Elevator
         private Coroutine autoCloseCoroutine;
         private bool isOpen = false;
 
+        public void DisableAutoClose()
+        {
+            if (autoCloseCoroutine != null)
+            {
+                StopCoroutine(autoCloseCoroutine);
+                autoCloseCoroutine = null;
+            }
+        }
+
         public void Open()
         {
             StartCoroutine(OpenCoroutine());

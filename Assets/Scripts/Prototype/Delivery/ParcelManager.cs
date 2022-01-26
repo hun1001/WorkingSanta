@@ -104,6 +104,7 @@ namespace Prototype.Delivery
         {
             floorList.DOFade(0, 0.5f);
             floorList.blocksRaycasts = false;
+            DeliveryManager.Instance.Elevator.Door.Close();
         }
 
         private void OnCloseFloorListButton()
