@@ -80,6 +80,17 @@ namespace Prototype.Delivery
                 box.transform.SetSiblingIndex(UnityEngine.Random.Range(0, inventoryGroup.transform.childCount));
             }
             OpenFloorList();
+
+            InvokeRepeating("UpdateFloorList", 3, 3);
+        }
+
+        private void UpdateFloorList()
+        {
+            for (int i = 0; i < this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount; i++)
+            {
+                var child = this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(i);
+                child.SetSiblingIndex(UnityEngine.Random.Range(0, this.floorList.transform.GetChild(1).GetChild(0).GetChild(0).childCount));
+            }
         }
 
         public void OnDrop(DragItem dragItem, Direction direction)
