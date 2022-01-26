@@ -9,7 +9,6 @@ namespace Prototype.Delivery.Elevator
 {
     public class ElevatorFloorButton : MonoBehaviour
     {
-        [SerializeField] Button exitButton;
         [SerializeField] List<Toggle> floorButtons;
         [SerializeField] RectTransform buttonPadList;
         [SerializeField] GameObject buttonPrefab;
