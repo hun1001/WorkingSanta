@@ -120,7 +120,8 @@ namespace Prototype.Delivery
 
         private void OnGotoMain()
         {
-            SceneManager.LoadScene("Main");
+            Debug.Log("goto other scene");
+            SceneManager.LoadScene("SampleScene");
         }
 
         public void OnGameOver()
@@ -133,6 +134,8 @@ namespace Prototype.Delivery
 
         private IEnumerator GameOverCoroutine()
         {
+            resultCanvas.blocksRaycasts = true;
+
             resultCanvas.DOFade(1f, 1f);
             yield return new WaitForSeconds(1f);
             var item = Instantiate(resultTextPrefab, resultTextParent);
