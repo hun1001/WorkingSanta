@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Prototype;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Prototype_Main
 {
@@ -67,29 +68,42 @@ namespace Prototype_Main
                 wnd.text = "평일알바";
             }
         }
+
+        #region 상점 버튼
         private void OnPI()
         {
-            Debug.Log("구매");
+            BuyItem(Item.InfoKillingLicense, 1_000_000);
         }
         private void OnPH()
         {
-            Debug.Log("구매");
+            BuyItem(Item.Hamburger, 500_000);
         }
         private void OnPF()
         {
-            Debug.Log("구매");
+            BuyItem(Item.Fairly, 2_500_000);
         }
         private void OnPR()
         {
-            Debug.Log("구매");
+            BuyItem(Item.Rudolf, 2_500_000);
         }
         private void OnPG()
         {
-            Debug.Log("구매");
+            BuyItem(Item.Rayder, 2_500_000);
         }
         private void OnPC()
         {
-            Debug.Log("구매");
+            BuyItem(Item.Vaccine, 3_000_000);
+        }
+        #endregion
+
+        private void BuyItem(Item infoKillingLicense, int price)
+        {
+            if (price > CharacterStat.Money)
+            {
+                return;
+            }
+            CharacterStat.Money -= price;
+            CharacterStat.AddItem(infoKillingLicense);
         }
     }
 }
