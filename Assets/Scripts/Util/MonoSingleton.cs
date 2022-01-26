@@ -2,16 +2,10 @@ using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-    private static bool shuttingDown = false;
     private static T instance = null;
     private static object locker = new object();
     public static T Instance{
         get{
-            if (shuttingDown)
-            {
-                Debug.LogWarning("[Singleton] Instance " + typeof(T) + " already destroyed. Returning null.");
-                return null;
-            }
             lock (locker)
             {
                 if (instance == null)
@@ -44,14 +38,5 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             DestroyImmediate(this);
             return;
         }        
-    }
-
-    private void OnDestroy()
-    {
-        shuttingDown = true;
-    }
-    private void OnApplicationQuit()
-    {
-        shuttingDown = true;
     }
 }
