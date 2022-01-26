@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bdd533b59c4e64d9b9b50823797632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topFloor: 5
+  topFloor: 10
   elevatorFloor: {fileID: 1758007320}
   door: {fileID: 1092994374}
   floorButton: {fileID: 560347176}
@@ -2436,7 +2436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e7cd935699d174a8a2b94a195456f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandledButtonList: []
   _buttonInfos:
   - name: CloseFloorListButton
     button: {fileID: 165494827}

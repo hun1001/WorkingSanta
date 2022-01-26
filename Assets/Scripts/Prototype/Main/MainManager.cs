@@ -10,6 +10,8 @@ namespace Prototype_Main
 {
     public class MainManager : MonoBehaviour
     {
+        public static bool Weekwork; 
+
         [SerializeField]
         private Image AlbaIcon;
         [SerializeField]
@@ -34,6 +36,7 @@ namespace Prototype_Main
             else
                 CharacterStat.Hp -= 56;
             //road other scene
+            Weekwork = weekwork;
             SceneManager.LoadScene("Prototype");
         }
         private void OnApplyD()

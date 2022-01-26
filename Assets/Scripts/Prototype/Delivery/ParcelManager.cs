@@ -54,7 +54,7 @@ namespace Prototype.Delivery
                 floorList.Add(i);
             }
 
-            for (int i = 0; i < DeliveryManager.Instance.Elevator.TopFloor - 2; i++)
+            for (int i = 0; i < ((DeliveryManager.Instance.Elevator.TopFloor == 10) ? 4:6); i++)
             {
                 var target = UnityEngine.Random.Range(0, floorList.Count);
                 targetHomes.Add(new HomeElement() 

@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Prototype_Main;
 
 namespace Prototype.Delivery.Elevator
 {
@@ -34,6 +35,11 @@ namespace Prototype.Delivery.Elevator
         private bool isTop = false;
         private List<int> targetFloors = new List<int>();
         private Direction direction = Direction.Up;
+
+        private void Start()
+        {
+            topFloor = MainManager.Weekwork ? 15 : 10;
+        }
 
         private void SetBuilding(BuildingElement building)
         {
