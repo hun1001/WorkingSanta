@@ -56,6 +56,7 @@ namespace Prototype.Delivery.Elevator
         private void CloseButtonPad()
         {
             CloseButtonWindow();
+            DeliveryManager.Instance.Elevator.Door.Close();
         }
 
         private void CloseButtonWindow()

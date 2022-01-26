@@ -40,11 +40,12 @@ namespace Prototype.Delivery.Elevator
         public IEnumerator OpenCoroutine()
         {
             if (isOpen || DeliveryManager.Instance.Elevator.IsMoving) yield break;
+            
+            autoCloseCoroutine = StartCoroutine(AutoCloseCoroutine());
 
             ElevatorDoorLeft.DOAnchorPosX(-675, 3f).SetEase(Ease.InOutExpo);
             ElevatorDoorRight.DOAnchorPosX(675, 3f).SetEase(Ease.InOutExpo);
             yield return new WaitForSeconds(3f);
-            autoCloseCoroutine = StartCoroutine(AutoCloseCoroutine());
             isOpen = true;
         }
 
@@ -72,7 +73,7 @@ namespace Prototype.Delivery.Elevator
 
         private IEnumerator AutoCloseCoroutine()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(6f);
             Close();
         }
     }
