@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Prototype.Delivery.Elevator;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Prototype.Delivery.Elevator
 {
@@ -17,6 +18,7 @@ namespace Prototype.Delivery.Elevator
         {
             ButtonManager.Instance.AddHandler(this);
             targetHome = ParcelManager.Instance.TargetHomes;
+            
             for (int i = 0; i < floorButtons.Length; i++)
             {
                 int temp = i;
@@ -26,15 +28,18 @@ namespace Prototype.Delivery.Elevator
 
         private void CheckSelectButton()
         {
-            int cnt = 0;
-            foreach(var home in targetHome)
+            List<int> tempA = DeliveryManager.Instance.Elevator.TargetFloors;
+            List<int> tempB = new List<int>();
+            
+            foreach(var floor in targetHome)
             {
-                if(floorButtons[home.Floor] == true)
-                {
-                    cnt++;
-                }
+                tempB.Add(floor.Floor);
             }
-            if(cnt == targetHome.Count)
+
+            tempA.Sort();
+            tempB.Sort();
+
+            if (tempA.SequenceEqual(tempB))
             {
                 CloseButtonPad();
             }
