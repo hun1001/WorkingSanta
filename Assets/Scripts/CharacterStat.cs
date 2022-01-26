@@ -21,6 +21,11 @@ public static class CharacterStat
     public static int RemainingDays = 357;
     public static int Money = 0;
 
+    private static void Start()
+    {
+        LoadData();
+    }
+
     public static void AddItem(Item item)
     {
         Items |= item;

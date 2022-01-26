@@ -78,6 +78,7 @@ class ExitManager : MonoBehaviour
 
     public void Yes()
     {
+        CharacterStat.SaveData();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
