@@ -101,7 +101,6 @@ namespace Prototype.Delivery
                 {
                     gameInfo.isStart = true;
                     gameInfo.startTime = 5f;
-                    elevator.MoveElevator();
                 }
             }
         }
