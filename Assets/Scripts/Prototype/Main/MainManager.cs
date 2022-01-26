@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Prototype;
 using UnityEngine.SceneManagement;
 using System;
+using DG.Tweening;
 
 namespace Prototype_Main
 {
@@ -20,6 +21,9 @@ namespace Prototype_Main
         private Text wnd;
         [SerializeField]
         private GameObject ShopScroll;
+        [SerializeField]
+        private CanvasGroup endingGroup;
+
         private bool weekwork = false;
         
 
@@ -27,12 +31,21 @@ namespace Prototype_Main
         {
             ButtonManager.Instance.AddHandler(this);
             ShopScroll.gameObject.SetActive(false);
+
+            if (CharacterStat.RemainingDays <= 0)
+            {
+                StartCoroutine(Ending());
+            }
+        }
+
+        private IEnumerator Ending()
+        {
+            yield return new WaitForSeconds(1f);
+            endingGroup.DOFade(1f, 1f);
         }
 
         private void OnDeliveryStart()
         {
-
-
             if (!weekwork)
             {
                 CharacterStat.Hp -= 40;
