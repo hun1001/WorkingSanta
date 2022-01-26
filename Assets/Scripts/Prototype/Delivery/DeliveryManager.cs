@@ -121,6 +121,7 @@ namespace Prototype.Delivery
         private void OnGotoMain()
         {
             Debug.Log("goto other scene");
+            CharacterStat.SaveData();
             SceneManager.LoadScene("SampleScene");
         }
         
@@ -164,7 +165,7 @@ namespace Prototype.Delivery
             item = Instantiate(resultTextPrefab, resultTextParent);
             item.GetComponent<Text>().text = $"수익: {(((int)((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total * 25) < 0) ? 0: (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25))}만원";
 
-            CharacterStat.RemainingDays -= 5;
+            CharacterStat.RemainingDays -= 7;
             CharacterStat.Money += (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25) < 0 ? 0: (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25);
         }
     }
