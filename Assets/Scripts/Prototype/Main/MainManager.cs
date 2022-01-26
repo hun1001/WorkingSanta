@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Prototype;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,11 @@ namespace Prototype_Main
 {
     public class MainManager : MonoBehaviour
     {
+        [SerializeField]
+        private Image AlbaIcon;
+        [SerializeField]
+        private Sprite Delivery;
+
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -17,6 +23,10 @@ namespace Prototype_Main
         {
             //road other scene
             SceneManager.LoadScene("Prototype");
+        }
+        private void OnApplyD()
+        {
+            AlbaIcon.sprite = Delivery;
         }
     }
 }
