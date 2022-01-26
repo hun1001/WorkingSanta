@@ -1377,7 +1377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &560347173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1459,7 +1459,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 575109537}
-  floorButtons: []
+  floorButtons:
+  - {fileID: 1341835226}
+  - {fileID: 571318869}
+  - {fileID: 772603024}
+  - {fileID: 328429155}
+  - {fileID: 2037526834}
+  - {fileID: 1285528519}
+  - {fileID: 1981699549}
+  - {fileID: 2111283936}
+  - {fileID: 1302814958}
+  - {fileID: 1640566647}
 --- !u!1 &571318867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,8 +2221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d043b1ae69e7e3746b3b5c9bef876a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowUp: {fileID: 0}
-  arrowDown: {fileID: 0}
+  arrowUp: {fileID: 3293387665700048435, guid: afb55d75a69c1e54e8a25fd8e1dd6df7, type: 3}
+  arrowDown: {fileID: -6384877477762329575, guid: afb55d75a69c1e54e8a25fd8e1dd6df7, type: 3}
 --- !u!1 &808626237
 GameObject:
   m_ObjectHideFlags: 0
