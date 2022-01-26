@@ -62,11 +62,9 @@ namespace Prototype.Delivery.Elevator
 
         private IEnumerator MoveElevatorCoroutine()
         {
-            if (direction == Direction.None) yield break;
-
             if (targetFloors.Count <= 0) 
             {
-                direction = Direction.None;
+                direction = Direction.Down;
                 yield break;
             }
             if (isMoving) yield break;
@@ -142,8 +140,7 @@ namespace Prototype.Delivery.Elevator
                 isMoving = false;
                 if (targetFloors.Count <= 0)
                 {
-                    EventManager.TriggerEvent("ElevatorStop");
-                    direction = Direction.None;
+                    direction = Direction.Down;
                 }
                 yield return door.OpenCoroutine();
             }

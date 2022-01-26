@@ -123,7 +123,7 @@ namespace Prototype.Delivery
             SceneManager.LoadScene("Main");
         }
 
-        internal void OnGameOver()
+        public void OnGameOver()
         {
             gameInfo.isStart = false;
             gameInfo.isEnd = true;
