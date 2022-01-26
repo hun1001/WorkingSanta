@@ -30,13 +30,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     }
 
     private void Awake(){
-        if(instance == null){
-            instance = this as T;
-        }
-        else if(instance != this){
-            Debug.LogError("Another instance of " + GetType() + "is already exist. Destroying duplicated one.");
-            DestroyImmediate(this);
-            return;
-        }        
+        instance = this as T;
     }
 }
