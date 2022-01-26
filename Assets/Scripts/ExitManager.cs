@@ -11,6 +11,8 @@ class ExitManager : MonoBehaviour
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
 
+    private bool isFading = false;
+
     private void Awake()
     {
         ButtonManager.Instance.AddHandledButton(yesButton);
@@ -46,19 +48,30 @@ class ExitManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (isFading)
+            {
+                return;
+            }
+
             if (exitCanvas.alpha == 0)
             {
-                exitCanvas.DOFade(1, 0.5f).From(0);
+                isFading = true;
+                exitCanvas.DOFade(1, 0.5f).From(0).onComplete += () =>
+                {
+                    isFading = false;
+                };
                 exitCanvas.blocksRaycasts = true;
                 exitCanvas.interactable = true;
-                Time.timeScale = 0;
             }
             else
             {
-                exitCanvas.DOFade(0, 0.5f).From(1);
+                isFading = true;
+                exitCanvas.DOFade(0, 0.5f).From(1).onComplete += () =>
+                {
+                    isFading = false;
+                };
                 exitCanvas.blocksRaycasts = false;
                 exitCanvas.interactable = false;
-                Time.timeScale = 1;
             }
         }
     }
@@ -74,9 +87,12 @@ class ExitManager : MonoBehaviour
 
     public void No()
     {
-        exitCanvas.alpha = 0;
+        isFading = true;
+        exitCanvas.DOFade(0, 0.5f).From(1).onComplete += () =>
+        {
+            isFading = false;
+        };
         exitCanvas.blocksRaycasts = false;
         exitCanvas.interactable = false;
-        Time.timeScale = 1;
     }
 }
