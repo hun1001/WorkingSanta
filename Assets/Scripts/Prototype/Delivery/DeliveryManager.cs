@@ -81,7 +81,7 @@ namespace Prototype.Delivery
 
         private void Start()
         {
-            //TODO: 시작 전 건물 선택
+            Elevator.TopFloor = UnityEngine.Random.Range(10, 20);
             elevator.Door.Open();
             elevator.Door.DisableAutoClose();
         }
