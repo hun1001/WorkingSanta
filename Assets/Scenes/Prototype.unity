@@ -992,7 +992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe7ca2bb69d67a49abe1b54905ef549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitButton: {fileID: 0}
   floorButtons: []
   buttonPadList: {fileID: 560347173}
   buttonPrefab: {fileID: 7427833471756547879, guid: 679f5e696eb70c44a9e45a2e80874976, type: 3}
@@ -1147,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bdd533b59c4e64d9b9b50823797632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topFloor: 30
+  topFloor: 5
   elevatorFloor: {fileID: 1758007320}
   door: {fileID: 1092994374}
   floorButton: {fileID: 560347176}
