@@ -50,6 +50,7 @@ namespace Prototype.Delivery.Elevator
             {
                 DeliveryManager.Instance.Elevator.RemoveTargetFloor(index + 1);
             }
+            CheckSelectButton();
         }
 
         private void CloseButtonPad()
