@@ -84,7 +84,11 @@ namespace Prototype.Delivery
         public void OnDrop(DragItem dragItem, Direction direction)
         {
             Destroy(dragItem.gameObject);
-            var parcel = targetHomes.Find(x => x.Floor == DeliveryManager.Instance.Elevator.CurrentFloor && x.Direction == direction);
+            var parcel = targetHomes.Find(x => 
+                x.Floor == DeliveryManager.Instance.Elevator.CurrentFloor &&
+                x.Direction == direction &&
+                x.Type == dragItem.GetComponent<Parcel>().Type
+            );
             if (parcel == null)
             {
                 DeliveryManager.Instance.OnDelivery(false);
