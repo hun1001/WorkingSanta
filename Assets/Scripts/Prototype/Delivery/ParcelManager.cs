@@ -81,7 +81,7 @@ namespace Prototype.Delivery
             }
             OpenFloorList();
 
-            InvokeRepeating("UpdateFloorList", 3, 3);
+            InvokeRepeating("UpdateFloorList", 1, 1);
         }
 
         private void UpdateFloorList()
