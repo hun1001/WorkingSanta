@@ -18,7 +18,7 @@ public static class CharacterStat
 {
     public static int hp = 100;
     public static Item Items = Item.None;
-    public static int RemainingDays = 0;
+    public static int RemainingDays = 357;
     public static int Money = 0;
 
     public static void AddItem(Item item)
