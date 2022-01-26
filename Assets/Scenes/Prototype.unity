@@ -4821,8 +4821,6 @@ MonoBehaviour:
     button: {fileID: 165494827}
   - name: GotoMain
     button: {fileID: 2033546737}
-  - name: RestartGame
-    button: {fileID: 0}
 --- !u!114 &1656534603
 MonoBehaviour:
   m_ObjectHideFlags: 0

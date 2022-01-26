@@ -34,7 +34,6 @@ namespace Prototype_Main
             else
                 CharacterStat.hp -= 56;
             //road other scene
-            
             SceneManager.LoadScene("Prototype");
         }
         private void OnApplyD()
