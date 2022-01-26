@@ -83,6 +83,7 @@ namespace Prototype.Delivery
         {
             //TODO: 시작 전 건물 선택
             elevator.Door.Open();
+            elevator.Door.DisableAutoClose();
         }
 
         private void Update()
