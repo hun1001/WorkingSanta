@@ -14,7 +14,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void Update()
     {
         days.text = $"{CharacterStat.RemainingDays}-Days";
-        hpBar.fillAmount = (float)((float)CharacterStat.hp / 100f);
+        hpBar.fillAmount = (float)((float)CharacterStat.Hp / 100f);
         moneyText.text = $"{CharacterStat.Money}¸¸¿ø";
     }
 }

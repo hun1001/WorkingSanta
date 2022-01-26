@@ -30,9 +30,9 @@ namespace Prototype_Main
         private void OnDeliveryStart()
         {
             if (!weekwork)
-                CharacterStat.hp -= 40;
+                CharacterStat.Hp -= 40;
             else
-                CharacterStat.hp -= 56;
+                CharacterStat.Hp -= 56;
             //road other scene
             SceneManager.LoadScene("Prototype");
         }

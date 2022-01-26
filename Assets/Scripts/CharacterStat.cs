@@ -16,7 +16,7 @@ public enum Item : int
 
 public static class CharacterStat
 {
-    public static int hp = 100;
+    public static int Hp = 100;
     public static Item Items = Item.None;
     public static int RemainingDays = 357;
     public static int Money = 0;
@@ -34,5 +34,21 @@ public static class CharacterStat
     public static bool HasItem(Item item)
     {
         return (Items & item) == item;
+    }
+
+    public static void SaveData()
+    {
+        PlayerPrefs.SetInt("Hp", Hp);
+        PlayerPrefs.SetInt("Items", (int)Items);
+        PlayerPrefs.SetInt("RemainingDays", RemainingDays);
+        PlayerPrefs.SetInt("Money", Money);
+    }
+
+    public static void LoadData()
+    {
+        Hp = PlayerPrefs.GetInt("Hp", Hp);
+        Items = (Item)PlayerPrefs.GetInt("Items", (int)Items);
+        RemainingDays = PlayerPrefs.GetInt("RemainingDays", RemainingDays);
+        Money = PlayerPrefs.GetInt("Money", Money);
     }
 }
