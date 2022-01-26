@@ -104,7 +104,7 @@ namespace Prototype.Delivery.Elevator
                     targetFloors.Remove(currentFloor);
                     isArrival = true;
                 }
-                else if (direction.Equals(Direction.Down) && random < residentEventProbability)
+                else if (direction.Equals(Direction.Down) && random < residentEventProbability && currentFloor != 1)
                 {
                     Debug.Log("ResidentEvent");
                     isArrival = true;
