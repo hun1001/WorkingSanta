@@ -28,5 +28,17 @@ namespace Prototype_Main
         {
             AlbaIcon.sprite = Delivery;
         }
+        private void OnShop()
+        {
+
+        }
+        private void OnAlba()
+        {
+
+        }
+        private void OnWeekendAlba()
+        {
+
+        }
     }
 }
