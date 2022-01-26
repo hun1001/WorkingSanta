@@ -121,6 +121,7 @@ namespace Prototype.Delivery
         private void OnGotoMain()
         {
             Debug.Log("goto other scene");
+            CharacterStat.SaveData();
             SceneManager.LoadScene("SampleScene");
         }
         
