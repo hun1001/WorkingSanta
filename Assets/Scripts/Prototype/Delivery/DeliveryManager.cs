@@ -162,7 +162,7 @@ namespace Prototype.Delivery
             yield return new WaitForSeconds(1f);
 
             item = Instantiate(resultTextPrefab, resultTextParent);
-            item.GetComponent<Text>().text = $"수익: {gameInfo.score}원";
+            item.GetComponent<Text>().text = $"수익: {(int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total)*25)}만원";
         }
     }
 }
