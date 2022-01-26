@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Prototype.Delivery
 {
-    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler// , IDropHandler
+    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private RectTransform inventoryRect;
         private RectTransform rectTransform;
@@ -27,30 +27,30 @@ namespace Prototype.Delivery
             transform.position = new Vector3(Camera.main.ScreenToWorldPoint(eventData.position).x, Camera.main.ScreenToWorldPoint(eventData.position).y, 0);
         }
 
-        // public void OnDrop(PointerEventData eventData)
-        // {
-        //     if (DeliveryManager.Instance.ElevatorCore.ElevatorDoor.IsOpen)
-        //     {
-        //         Debug.Log("isOverlapped(inventoryRect, rectTransform) : " + isOverlapped(inventoryRect, rectTransform));
-        //         if (!isOverlapped(inventoryRect, rectTransform))
-        //         {
-        //             if (transform.position.x < 0)
-        //             {
-        //                 Debug.Log("Left");
-        //             }
-        //             else
-        //             {
-        //                 Debug.Log("Right");
-        //             }
-        //             return;
-        //         }
-        //     }
-        //     transform.position = startPosition;
-        // }
-
-        // private bool isOverlapped(RectTransform rect1, RectTransform rect2)
-        // {
-            
-        // }
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (DeliveryManager.Instance.Elevator.Door.IsOpen)
+            {
+                if (transform.position.y > -2.8f)
+                {
+                    if (transform.position.x < 0)
+                    {
+                        ParcelManager.Instance.OnDrop(this, Direction.Left);
+                    }
+                    else
+                    {
+                        ParcelManager.Instance.OnDrop(this, Direction.Right);
+                    }
+                }
+                else
+                {
+                    transform.position = startPosition;
+                }
+            }
+            else
+            {
+                transform.position = startPosition;
+            }
+        }
     }
 }

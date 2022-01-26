@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Prototype.Delivery.Elevator
 {
@@ -29,6 +30,7 @@ namespace Prototype.Delivery.Elevator
         private int currentFloor = 1;
         private float residentEventProbability = 0.3f;
         private bool isMoving = false;
+        private bool isTop = false;
         private List<int> targetFloors = new List<int>();
         private Direction direction = Direction.Up;
 
@@ -60,6 +62,11 @@ namespace Prototype.Delivery.Elevator
 
         private IEnumerator MoveElevatorCoroutine()
         {
+            if (targetFloors.Count <= 0) 
+            {
+                direction = Direction.None;
+                yield break;
+            }
             if (isMoving) yield break;
             isMoving = true;
 
@@ -86,36 +93,54 @@ namespace Prototype.Delivery.Elevator
 
             bool isArrival = false;
             float random = UnityEngine.Random.Range(0f, 1f);
-            Debug.Log("random : " + random);
 
-            if (targetFloors.Contains(currentFloor))
+            if (direction.Equals(Direction.Down))
             {
-                targetFloors.Remove(currentFloor);
-                isArrival = true;
+                if (targetFloors.Contains(currentFloor))
+                {
+                    targetFloors.Remove(currentFloor);
+                    isArrival = true;
+                }
+                else if (direction.Equals(Direction.Down) && random < residentEventProbability)
+                {
+                    Debug.Log("ResidentEvent");
+                    isArrival = true;
+                }
+                else if (currentFloor >= topFloor)
+                {
+                    direction = Direction.Down;
+                    isArrival = true;
+                }
+                else if (currentFloor <= 1)
+                {
+                    direction = Direction.Up;
+                    StartCoroutine(door.OpenCoroutine());
+                    isMoving = false;
+                    DeliveryManager.Instance.GameInfo.isStart = false;
+                    yield break;
+                }
             }
-            else if (direction.Equals(Direction.Down) && random < residentEventProbability)
+            else
             {
-                Debug.Log("ResidentEvent");
-                isArrival = true;
-            }
-            else if (currentFloor >= topFloor)
-            {
-                direction = Direction.Down;
-                isArrival = true;
-            }
-            else if (currentFloor <= 1)
-            {
-                direction = Direction.Up;
-                StartCoroutine(door.OpenCoroutine());
-                isMoving = false;
-                DeliveryManager.Instance.GameInfo.isStart = false;
-                yield break;
+                if (targetFloors.Count > 0)
+                {
+                    if (currentFloor == targetFloors.Max())
+                    {
+                        direction = Direction.Down;
+                        isArrival = true;
+                    }
+                }
             }
 
             if (isArrival)
             {
                 OnElevatorArrival?.Invoke(currentFloor);
                 isMoving = false;
+                if (targetFloors.Count <= 0)
+                {
+                    EventManager.TriggerEvent("ElevatorStop");
+                    direction = Direction.None;
+                }
                 yield return door.OpenCoroutine();
             }
             else

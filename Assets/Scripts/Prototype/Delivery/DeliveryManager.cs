@@ -13,7 +13,8 @@ namespace Prototype.Delivery
         Left = 1,
         Right = 2,
         Up = 3,
-        Down = 4
+        Down = 4,
+        None = 5
     }
 
     public class ResultStat
@@ -93,6 +94,19 @@ namespace Prototype.Delivery
                     gameInfo.startTime = 5f;
                     elevator.MoveElevator();
                 }
+            }
+        }
+
+        public void OnDelivery(bool isSuccess)
+        {
+            gameInfo.resultStat.Total++;
+            if (isSuccess)
+            {
+                gameInfo.resultStat.SuccessFloorList.Add(elevator.CurrentFloor);
+            }
+            else
+            {
+                gameInfo.resultStat.FailFloorList.Add(elevator.CurrentFloor);
             }
         }
     }
