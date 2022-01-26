@@ -74,6 +74,11 @@ namespace Prototype_Main
 
         }
 
+        private void OnTuto()
+        {
+            UIManager.Instance.tutoPanelToggle();
+        }
+
         #region 상점 버튼
         private void OnPI()
         {
