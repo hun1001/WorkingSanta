@@ -31,10 +31,29 @@ namespace Prototype_Main
 
         private void OnDeliveryStart()
         {
+
+
             if (!weekwork)
+            {
                 CharacterStat.Hp -= 40;
+                if (CharacterStat.Hp < 0)
+                {
+                    UIManager.Instance.ShowWarning("체력이 부족합니다.");
+                    CharacterStat.Hp += 40;
+                    return;
+                }
+            }
             else
+            {
                 CharacterStat.Hp -= 56;
+                if (CharacterStat.Hp < 0)
+                {
+                    UIManager.Instance.ShowWarning("체력이 부족합니다.");
+                    CharacterStat.Hp += 56;
+                    return;
+                }
+            }
+
             //road other scene
             Weekwork = weekwork;
             SceneManager.LoadScene("Prototype");
@@ -74,7 +93,8 @@ namespace Prototype_Main
 
         private void OnRest()
         {
-
+            CharacterStat.Hp += 50;
+            CharacterStat.RemainingDays -= 7;
         }
 
         private void OnTuto()
