@@ -48,14 +48,14 @@ class ExitManager : MonoBehaviour
         {
             if (exitCanvas.alpha == 0)
             {
-                exitCanvas.alpha = 1;
+                exitCanvas.alpha = 1f;
                 exitCanvas.blocksRaycasts = true;
                 exitCanvas.interactable = true;
                 Time.timeScale = 0;
             }
             else
             {
-                exitCanvas.alpha = 0;
+                exitCanvas.alpha = 0f;
                 exitCanvas.blocksRaycasts = false;
                 exitCanvas.interactable = false;
                 Time.timeScale = 1;
