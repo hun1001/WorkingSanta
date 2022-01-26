@@ -11,6 +11,7 @@ public enum Item : int
     Fairly = 1 << 2,
     Rudolf = 1 << 3,
     Rayder = 1 << 4,
+    Vaccine = 1 << 5,
 } 
 
 public static class CharacterStat
