@@ -21,7 +21,7 @@ namespace Prototype.Delivery.Elevator
         public Direction Direction { get { return direction; } }
         public List<int> TargetFloors { get { return targetFloors; } }
 
-        [SerializeField] int topFloor = 30;
+        [SerializeField] int topFloor;
         [SerializeField] Text elevatorFloor;
         [SerializeField] ElevatorDoor door;
         [SerializeField] ElevatorFloorButton floorButton;
