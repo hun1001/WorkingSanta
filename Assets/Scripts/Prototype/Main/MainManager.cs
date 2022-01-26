@@ -16,7 +16,7 @@ namespace Prototype_Main
         [SerializeField]
         private Text wnd;
         private bool weekwork = false;
-
+        private int hp = 100;
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -24,25 +24,25 @@ namespace Prototype_Main
 
         private void OnDeliveryStart()
         {
+            if (!weekwork)
+                hp -= 40;
+            else
+                hp -= 56;
             //road other scene
             SceneManager.LoadScene("Prototype");
         }
-
         private void OnApplyD()
         {
             AlbaIcon.sprite = Delivery;
         }
-
         private void OnShop()
         {
 
         }
-
         private void OnAlba()
         {
 
         }
-
         private void OnWeekendAlba()
         {
             if(!weekwork)

@@ -19,7 +19,6 @@ namespace Prototype.Delivery.Elevator
         public float ResidentEventProbability { get { return residentEventProbability; } set { residentEventProbability = value; } }
         public bool IsMoving { get { return isMoving; } }
         public Direction Direction { get { return direction; } }
-        public List<int> TargetFloors { get { return targetFloors; } }
 
         [SerializeField] int topFloor = 30;
         [SerializeField] Text elevatorFloor;
