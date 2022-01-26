@@ -165,7 +165,7 @@ namespace Prototype.Delivery
             item.GetComponent<Text>().text = $"수익: {(int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total)*25)}만원";
 
             CharacterStat.RemainingDays -= 5;
-            CharacterStat.Money += (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25);
+            CharacterStat.Money += (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25) < 0 ? 0: (int)(((float)gameInfo.resultStat.SuccessFloorList.Count / gameInfo.resultStat.Total) * 25);
         }
     }
 }

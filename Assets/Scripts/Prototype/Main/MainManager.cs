@@ -69,6 +69,11 @@ namespace Prototype_Main
             }
         }
 
+        private void OnRest()
+        {
+
+        }
+
         #region 상점 버튼
         private void OnPI()
         {
