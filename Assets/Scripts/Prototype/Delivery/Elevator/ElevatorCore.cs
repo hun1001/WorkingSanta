@@ -62,6 +62,11 @@ namespace Prototype.Delivery.Elevator
 
         private IEnumerator MoveElevatorCoroutine()
         {
+            if (targetFloors.Count <= 0) 
+            {
+                direction = Direction.None;
+                yield break;
+            }
             if (isMoving) yield break;
             isMoving = true;
 
@@ -72,28 +77,25 @@ namespace Prototype.Delivery.Elevator
             {
                 yield return door.CloseCoroutine();
             }
-            
+
             yield return new WaitForSeconds(timeToNextFloor);
 
             if (direction.Equals(Direction.Up))
             {
-                EventManager.TriggerEvent("ElevatorUp");
                 currentFloor++;
             }
             else
             {
-                EventManager.TriggerEvent("ElevatorDown");
                 currentFloor--;
             }
-            
 
             UpdateUI();
 
             bool isArrival = false;
             float random = UnityEngine.Random.Range(0f, 1f);
-            Debug.Log("random : " + random);
 
-            if (direction.Equals(Direction.Down)){
+            if (direction.Equals(Direction.Down))
+            {
                 if (targetFloors.Contains(currentFloor))
                 {
                     targetFloors.Remove(currentFloor);
@@ -120,10 +122,13 @@ namespace Prototype.Delivery.Elevator
             }
             else
             {
-                if (currentFloor == targetFloors.Max() + 1)
+                if (targetFloors.Count > 0)
                 {
-                    direction = Direction.Down;
-                    yield return door.OpenCoroutine();
+                    if (currentFloor == targetFloors.Max())
+                    {
+                        direction = Direction.Down;
+                        isArrival = true;
+                    }
                 }
             }
 
@@ -131,6 +136,11 @@ namespace Prototype.Delivery.Elevator
             {
                 OnElevatorArrival?.Invoke(currentFloor);
                 isMoving = false;
+                if (targetFloors.Count <= 0)
+                {
+                    EventManager.TriggerEvent("ElevatorStop");
+                    direction = Direction.None;
+                }
                 yield return door.OpenCoroutine();
             }
             else

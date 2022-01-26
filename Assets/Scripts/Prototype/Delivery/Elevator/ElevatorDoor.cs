@@ -41,6 +41,11 @@ namespace Prototype.Delivery.Elevator
 
         public IEnumerator CloseCoroutine()
         {
+            if (DeliveryManager.Instance.Elevator.Direction == Direction.Down)
+                EventManager.TriggerEvent("ElevatorDown");
+            else
+                EventManager.TriggerEvent("ElevatorUp");
+                
             if (autoCloseCoroutine != null) StopCoroutine(autoCloseCoroutine);
 
             if (!isOpen)

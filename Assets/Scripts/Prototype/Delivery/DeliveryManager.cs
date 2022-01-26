@@ -13,7 +13,8 @@ namespace Prototype.Delivery
         Left = 1,
         Right = 2,
         Up = 3,
-        Down = 4
+        Down = 4,
+        None = 5
     }
 
     public class ResultStat
