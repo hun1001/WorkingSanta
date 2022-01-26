@@ -123,7 +123,7 @@ namespace Prototype.Delivery
             Debug.Log("goto other scene");
             SceneManager.LoadScene("SampleScene");
         }
-
+        
         public void OnGameOver()
         {
             gameInfo.isStart = false;
