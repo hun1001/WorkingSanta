@@ -18,9 +18,11 @@ namespace Prototype_Main
         [SerializeField]
         private Sprite Delivery;
         [SerializeField]
-        private Text wnd;
+        private Image wnd;
         [SerializeField]
         private GameObject ShopScroll;
+        [SerializeField]
+        private GameObject InvScroll;
         [SerializeField]
         private CanvasGroup endingGroup;
 
@@ -96,19 +98,26 @@ namespace Prototype_Main
         }
         private void OnAlba()
         {
-
+            if (InvScroll.gameObject.activeSelf == true)
+            {
+                InvScroll.gameObject.SetActive(false);
+            }
+            else
+            {
+                InvScroll.gameObject.SetActive(true);
+            }
         }
         private void OnWeekendAlba()
         {
             if (!weekwork)
             {
                 weekwork = true;
-                wnd.text = "주말포함";
+                wnd.color = new Color(1f, 1f, 1f, 1);
             }
             else
             {
-                weekwork = false;
-                wnd.text = "평일알바";
+                weekwork = false;         
+                wnd.color = new Color(0.5f, 0.5f, 0.5f, 1);
             }
         }
 
