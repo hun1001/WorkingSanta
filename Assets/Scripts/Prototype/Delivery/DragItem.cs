@@ -10,11 +10,10 @@ namespace Prototype.Delivery
         private RectTransform inventoryRect;
         private RectTransform rectTransform;
         private Vector3 startPosition;
-
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
-            inventoryRect = transform.parent.GetComponent<RectTransform>();
+            inventoryRect = transform.parent.GetComponent<RectTransform>();        
         }
 
         public void OnBeginDrag(PointerEventData eventData)

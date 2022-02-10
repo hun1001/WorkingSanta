@@ -37,7 +37,7 @@ namespace Prototype.Delivery
         [SerializeField] List<HomeElement> targetHomes;
         [SerializeField] GameObject targetElementPrefab;
         [SerializeField] RectTransform targetList;
-
+        [SerializeField] AudioSource soundEffect;
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -85,6 +85,7 @@ namespace Prototype.Delivery
 
         public void OnDrop(DragItem dragItem, Direction direction)
         {
+            soundEffect.Play();
             Destroy(dragItem.gameObject);
             var parcel = targetHomes.Find(x => 
                 x.Floor == DeliveryManager.Instance.Elevator.CurrentFloor &&
