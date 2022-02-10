@@ -38,6 +38,8 @@ namespace Prototype.Delivery
         [SerializeField] GameObject targetElementPrefab;
         [SerializeField] RectTransform targetList;
         [SerializeField] AudioSource soundEffect;
+
+        private Image boxFade;
         private void Awake()
         {
             ButtonManager.Instance.AddHandler(this);
@@ -86,7 +88,8 @@ namespace Prototype.Delivery
         public void OnDrop(DragItem dragItem, Direction direction)
         {
             soundEffect.Play();
-            Destroy(dragItem.gameObject);
+            boxFade = dragItem.gameObject.GetComponent<Image>();
+            StartCoroutine(FadeOut());
             var parcel = targetHomes.Find(x => 
                 x.Floor == DeliveryManager.Instance.Elevator.CurrentFloor &&
                 x.Direction == direction &&
@@ -116,6 +119,18 @@ namespace Prototype.Delivery
         private void OnCloseFloorListButton()
         {
             CloseFloorList();
+        }
+
+        private IEnumerator FadeOut()
+        {
+            while(true)
+            {
+                boxFade.color = new Color(1, 1, 1, boxFade.color.a - 0.05f);
+                yield return new WaitForSeconds(0.05f);
+                if (boxFade.color.a < 0.05)
+                    break;
+            }
+            Destroy(boxFade.gameObject);
         }
     }
 }
