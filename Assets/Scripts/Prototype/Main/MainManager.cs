@@ -25,7 +25,11 @@ namespace Prototype_Main
         private GameObject InvScroll;
         [SerializeField]
         private CanvasGroup endingGroup;
-
+        [SerializeField]
+        private AudioSource ShopSound0;
+        [SerializeField]
+        private AudioSource ShopSound1;
+        
         private bool weekwork = false;
 
 
@@ -180,8 +184,10 @@ namespace Prototype_Main
         {
             if (price > CharacterStat.Money)
             {
+                ShopSound1.Play();
                 return;
             }
+            ShopSound0.Play();
             CharacterStat.Money -= price;
             CharacterStat.AddItem(infoKillingLicense);
         }
