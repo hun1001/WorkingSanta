@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EldenInputManager : MonoBehaviour
+public class EldenInputManager : MonoSingleton<EldenGameManager>
 {
     public event Action<float> OnSwapScreen;
     private bool _isMouseDown = false;
