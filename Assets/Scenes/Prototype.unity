@@ -1152,6 +1152,7 @@ MonoBehaviour:
   floorButton: {fileID: 560347176}
   timeToNextFloor: 1
   apartFloor: {fileID: 808626239}
+  inhabitant: {fileID: 6395726629869689518, guid: eed79e1c04926f043a3941dd058176aa, type: 3}
 --- !u!1 &795611702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2502,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0459dd90eba322449baba45aa145050e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
