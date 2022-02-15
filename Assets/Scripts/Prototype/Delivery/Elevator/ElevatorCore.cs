@@ -28,6 +28,7 @@ namespace Prototype.Delivery.Elevator
         [SerializeField] ElevatorFloorButton floorButton;
         [SerializeField] float timeToNextFloor = 1f;
         [SerializeField] Text apartFloor;
+        [SerializeField] GameObject inhabitant;
 
         private int currentFloor = 1;
         private float residentEventProbability = 0.3f;
@@ -113,6 +114,7 @@ namespace Prototype.Delivery.Elevator
                 else if (direction.Equals(Direction.Down) && random < residentEventProbability && currentFloor != 1)
                 {
                     Debug.Log("ResidentEvent");
+                    //여기
                     isArrival = true;
                 }
                 else if (currentFloor >= topFloor)
