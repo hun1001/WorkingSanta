@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Prototype_Main;
+using DG.Tweening;
 
 namespace Prototype.Delivery.Elevator
 {
@@ -28,7 +29,7 @@ namespace Prototype.Delivery.Elevator
         [SerializeField] ElevatorFloorButton floorButton;
         [SerializeField] float timeToNextFloor = 1f;
         [SerializeField] Text apartFloor;
-        [SerializeField] GameObject inhabitant;
+        [SerializeField] GameObject inhabitantPrefab;
 
         private int currentFloor = 1;
         private float residentEventProbability = 0.3f;
@@ -66,6 +67,14 @@ namespace Prototype.Delivery.Elevator
         public void RemoveTargetFloor(int floor)
         {
             targetFloors.Remove(floor);
+        }
+
+        private void SpawnInhabitant()
+        {
+            GameObject inhabitant = Instantiate(inhabitantPrefab, new Vector3(UnityEngine.Random.Range(-1.15f, 1.15f), -0.8f, 0), Quaternion.identity);
+            inhabitant.transform.SetParent(transform);
+            inhabitant.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
+            Destroy(inhabitant, 0.5f);
         }
 
         private IEnumerator MoveElevatorCoroutine()
@@ -114,7 +123,8 @@ namespace Prototype.Delivery.Elevator
                 else if (direction.Equals(Direction.Down) && random < residentEventProbability && currentFloor != 1)
                 {
                     Debug.Log("ResidentEvent");
-                    //여기
+                    
+                    
                     isArrival = true;
                 }
                 else if (currentFloor >= topFloor)
