@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EldenInputManager : MonoSingleton<EldenInputManager>
 {
-    public event Action<float> OnSwapScreen;
+    public event Action<bool> OnSwapScreen;
     private bool _isMouseDown = false;
     private Vector2 _mouseDownPos;
 
@@ -22,7 +22,10 @@ public class EldenInputManager : MonoSingleton<EldenInputManager>
             _isMouseDown = false;
             if (OnSwapScreen != null)
             {
-                OnSwapScreen.Invoke(Vector2.Angle(_mouseDownPos, Input.mousePosition));
+                if (Mathf.Abs(_mouseDownPos.x - Input.mousePosition.x) > 1)
+                {
+                    OnSwapScreen(Input.mousePosition.x > _mouseDownPos.x ? false : true);
+                }
             }
         }
     }
