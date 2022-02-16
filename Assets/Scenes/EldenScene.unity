@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2860536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1057448806044048837, guid: a452724168b01c549b4b45f06b401397, type: 3}
-  m_PrefabInstance: {fileID: 1057448806911517287}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &2860537
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2860536}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &171796872
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,37 +327,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9207384117923708518, guid: c6014bbafb170644f95cf9101ece9a11, type: 3}
   m_PrefabInstance: {fileID: 9207384118585795308}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1103789530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4293719756830811954, guid: e60ff09e6c0f1724583d793796c5c9da, type: 3}
-  m_PrefabInstance: {fileID: 4293719757868554584}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1103789531
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103789530}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!224 &1110376043 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4293719756830811955, guid: e60ff09e6c0f1724583d793796c5c9da, type: 3}
@@ -702,37 +640,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786031574}
   m_CullTransparentMesh: 1
---- !u!1 &1861073548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9207384117923708517, guid: c6014bbafb170644f95cf9101ece9a11, type: 3}
-  m_PrefabInstance: {fileID: 9207384118585795308}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1861073549
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861073548}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &2058552836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,10 +1058,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2083838083}
     m_Modifications:
-    - target: {fileID: 1072766751, guid: 6bd040e14dbec9240b8dbc8d9e30ab4b, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4158316053139162290, guid: 6bd040e14dbec9240b8dbc8d9e30ab4b, type: 3}
       propertyPath: m_Name
       value: Bus
