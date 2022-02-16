@@ -18,6 +18,8 @@ namespace Prototype_Main
         [SerializeField]
         private Sprite Delivery;
         [SerializeField]
+        private Sprite Together;
+        [SerializeField]
         private Image wnd;
         [SerializeField]
         private GameObject ShopScroll;
@@ -83,11 +85,22 @@ namespace Prototype_Main
 
             //road other scene
             Weekwork = weekwork;
-            SceneManager.LoadScene("Prototype");
+            if(AlbaIcon.sprite==Delivery)
+            {
+                SceneManager.LoadScene("Prototype");
+            }
+            else
+            {
+                SceneManager.LoadScene("EldenScene");
+            }
         }
         private void OnApplyD()
         {
             AlbaIcon.sprite = Delivery;
+        }
+        private void OnApplyT()
+        {
+            AlbaIcon.sprite = Together;
         }
         private void OnShop()
         {
