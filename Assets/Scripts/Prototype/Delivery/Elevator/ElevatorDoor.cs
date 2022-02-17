@@ -9,8 +9,6 @@ namespace Prototype.Delivery.Elevator
     public class ElevatorDoor : MonoBehaviour
     {
         public bool IsOpen { get { return isOpen; } }
-        public event Action OnOpen;
-        public event Action OnClose;
 
         [SerializeField] RectTransform ElevatorDoorLeft;
         [SerializeField] RectTransform ElevatorDoorRight;

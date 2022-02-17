@@ -34,7 +34,6 @@ namespace Prototype.Delivery.Elevator
         private int currentFloor = 1;
         private float residentEventProbability = 0.3f;
         private bool isMoving = false;
-        private bool isTop = false;
         private List<int> targetFloors = new List<int>();
         private Direction direction = Direction.Up;
 
