@@ -37,6 +37,11 @@ namespace Prototype
 
         private void Start()
         {
+            if (_buttonInfos == null)
+            {
+                return;
+            }
+
             var buttons = FindObjectsOfType<Button>();
             foreach (var button in buttons)
             {
