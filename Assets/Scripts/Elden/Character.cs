@@ -7,6 +7,7 @@ using System;
 public class Character : MonoBehaviour
 {
     private int _currentLine = 0;
+    private float _speed;
 
     private void Awake()
     {
@@ -18,11 +19,11 @@ public class Character : MonoBehaviour
     {
         if (isUp)
         {
-            EldenGameManager.Instance.CarSpeed.Speed += 0.5f;
+            _speed += 0.5f;
         }
         else
-        {
-            EldenGameManager.Instance.CarSpeed.Speed -= 0.5f;
+        {   
+            _speed -= 0.5f;
         }
     }
 
@@ -46,5 +47,28 @@ public class Character : MonoBehaviour
         Vector2 temp = transform.position;
         temp.x = EldenGameManager.Instance.Line.List[_currentLine].transform.position.x;
         transform.DOMove(temp, 0.5f);
+    }
+
+    private void Update()
+    {
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + _speed/100);
+        
+        if (gameObject.transform.position.y > Screen.height / 2)
+        {
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, Screen.height / 2);
+        }
+        else if (gameObject.transform.position.y < -Screen.height / 2)
+        {
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, -Screen.height / 2);
+        }
+
+        if (gameObject.transform.position.x > Screen.width / 2)
+        {
+            gameObject.transform.position = new Vector2(Screen.width / 2, gameObject.transform.position.y);
+        }
+        else if (gameObject.transform.position.x < -Screen.width / 2)
+        {
+            gameObject.transform.position = new Vector2(-Screen.width / 2, gameObject.transform.position.y);
+        }
     }
 }

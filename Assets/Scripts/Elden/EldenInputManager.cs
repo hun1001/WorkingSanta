@@ -23,7 +23,7 @@ public class EldenInputManager : MonoSingleton<EldenInputManager>
             _isMouseDown = false;
             if (OnSwapScreenV != null)
             {
-                if (Mathf.Abs(_mouseDownPos.x - Input.mousePosition.x) > 1)
+                if (Mathf.Abs(_mouseDownPos.x - Input.mousePosition.x) > 250)
                 {
                     OnSwapScreenV(!(Input.mousePosition.x > _mouseDownPos.x));
                 }
@@ -31,7 +31,7 @@ public class EldenInputManager : MonoSingleton<EldenInputManager>
 
             if (OnSwapScreenH != null)
             {
-                if (Mathf.Abs(_mouseDownPos.y - Input.mousePosition.y) > 1)
+                if (Mathf.Abs(_mouseDownPos.y - Input.mousePosition.y) > 250)
                 {
                     OnSwapScreenH(Input.mousePosition.y > _mouseDownPos.y);
                 }
