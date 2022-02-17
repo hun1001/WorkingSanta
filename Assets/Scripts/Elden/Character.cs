@@ -44,9 +44,7 @@ public class Character : MonoBehaviour
             }
         }
 
-        Vector2 temp = transform.position;
-        temp.x = EldenGameManager.Instance.Line.List[_currentLine].transform.position.x;
-        transform.DOMove(temp, 0.5f);
+        transform.DOMoveX(EldenGameManager.Instance.Line.List[_currentLine].transform.position.x, 0.5f);
     }
 
     private void Update()
