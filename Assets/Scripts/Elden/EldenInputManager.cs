@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EldenInputManager : MonoSingleton<EldenInputManager>
 {
-    public event Action<bool> OnSwapScreen;
+    public event Action<bool> OnSwapScreenH;
+    public event Action<bool> OnSwapScreenV;
     private bool _isMouseDown = false;
     private Vector2 _mouseDownPos;
 
@@ -20,11 +21,19 @@ public class EldenInputManager : MonoSingleton<EldenInputManager>
         if (Input.GetMouseButtonUp(0))
         {
             _isMouseDown = false;
-            if (OnSwapScreen != null)
+            if (OnSwapScreenV != null)
             {
                 if (Mathf.Abs(_mouseDownPos.x - Input.mousePosition.x) > 1)
                 {
-                    OnSwapScreen(Input.mousePosition.x > _mouseDownPos.x ? false : true);
+                    OnSwapScreenV(!(Input.mousePosition.x > _mouseDownPos.x));
+                }
+            }
+
+            if (OnSwapScreenH != null)
+            {
+                if (Mathf.Abs(_mouseDownPos.y - Input.mousePosition.y) > 1)
+                {
+                    OnSwapScreenH(Input.mousePosition.y > _mouseDownPos.y);
                 }
             }
         }

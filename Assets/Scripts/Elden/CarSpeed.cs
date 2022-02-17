@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CarSpeed : MonoBehaviour
 {
+    public float Speed { get { return _speed; } set { _speed = value; } }
+
     [SerializeField]
-    private float speed;
+    private float _speed;
 
     private void Update()
     {
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - speed/100);
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - _speed/100);
     }
 }

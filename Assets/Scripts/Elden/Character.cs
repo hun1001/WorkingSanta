@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Character : MonoBehaviour
 {
@@ -9,10 +10,23 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        EldenInputManager.Instance.OnSwapScreen += OnSwapScreen;
+        EldenInputManager.Instance.OnSwapScreenV += OnSwapScreenV;
+        EldenInputManager.Instance.OnSwapScreenH += OnSwapScreenH;
     }
 
-    private void OnSwapScreen(bool isLeft)
+    private void OnSwapScreenH(bool isUp)
+    {
+        if (isUp)
+        {
+            EldenGameManager.Instance.CarSpeed.Speed += 0.5f;
+        }
+        else
+        {
+            EldenGameManager.Instance.CarSpeed.Speed -= 0.5f;
+        }
+    }
+
+    private void OnSwapScreenV(bool isLeft)
     {
         if (isLeft)
         {
