@@ -220,6 +220,7 @@ namespace Prototype_Main
             if (price > CharacterStat.Money)
             {
                 ShopSound1.Play();
+                UIManager.Instance.ShowWarning("돈이 부족합니다.");
                 return;
             }
             ShopSound0.Play();
