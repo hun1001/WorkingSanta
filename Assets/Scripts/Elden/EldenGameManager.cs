@@ -8,8 +8,5 @@ public class EldenGameManager : MonoSingleton<EldenGameManager>
     public CarSpeed CarSpeed { get { return _carSpeed; } }
 
     [SerializeField] Character _character;
-    [SerializeField] Line _line;
-    [SerializeField] CarSpeed _carSpeed;
-
-    
+    [SerializeField] Line _line;    
 }
