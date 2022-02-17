@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 479263469}
   - component: {fileID: 479263468}
   - component: {fileID: 479263467}
+  - component: {fileID: 479263470}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -556,6 +557,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &479263470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479263466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40305224a41b32846b0c9c61b2940823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carPrefabs:
+  - {fileID: 1057448806044048837, guid: a452724168b01c549b4b45f06b401397, type: 3}
+  - {fileID: 8496214539055783266, guid: a8628b555862fce48af5e2b63d32a5a9, type: 3}
+  - {fileID: 4293719756830811954, guid: e60ff09e6c0f1724583d793796c5c9da, type: 3}
+  - {fileID: 4158316053139162290, guid: 6bd040e14dbec9240b8dbc8d9e30ab4b, type: 3}
+  - {fileID: 9207384117923708517, guid: c6014bbafb170644f95cf9101ece9a11, type: 3}
 --- !u!1001 &690240241
 PrefabInstance:
   m_ObjectHideFlags: 0
