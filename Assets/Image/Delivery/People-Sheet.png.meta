@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: 6773445814373519764
     second: People-Sheet_1
+  - first:
+      213: -2762472754701443756
+    second: People-Sheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,12 +115,12 @@ TextureImporter:
       name: People-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 62
-        width: 64
-        height: 64
+        x: 21
+        y: 68
+        width: 23
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,12 +136,12 @@ TextureImporter:
       name: People-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 62
-        width: 64
-        height: 64
+        x: 84
+        y: 67
+        width: 22
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,6 +149,27 @@ TextureImporter:
       bones: []
       spriteID: 4911717b41d100e50800000000000000
       internalID: 6773445814373519764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: People-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 4
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d53527aa9b9a9d0800000000000000
+      internalID: -2762472754701443756
       vertices: []
       indices: 
       edges: []
