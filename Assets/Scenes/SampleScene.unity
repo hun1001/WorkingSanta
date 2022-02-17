@@ -469,7 +469,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -140, y: -100}
+  m_SizeDelta: {x: -140, y: -240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43082657
 MonoBehaviour:
@@ -10898,7 +10898,7 @@ MonoBehaviour:
     button: {fileID: 1494012713}
   - name: Rest
     button: {fileID: 1511436368}
-  - name: Tuto
+  - name: TutoD
     button: {fileID: 1474133976}
   - name: Tuto
     button: {fileID: 43082659}
@@ -10908,7 +10908,7 @@ MonoBehaviour:
     button: {fileID: 1519094728}
   - name: ApplyT
     button: {fileID: 1970201629}
-  - name: Tuto
+  - name: TutoT
     button: {fileID: 1078117055}
 --- !u!114 &1719177429
 MonoBehaviour:
@@ -10931,6 +10931,7 @@ MonoBehaviour:
   endingGroup: {fileID: 1074112357}
   ShopSound0: {fileID: 1237105892}
   ShopSound1: {fileID: 167468890}
+  tutoText: {fileID: 2052378431}
 --- !u!114 &1719177430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13367,7 +13368,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 04aa244baa11954448b4209756e66932, type: 3}
-    m_FontSize: 100
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1

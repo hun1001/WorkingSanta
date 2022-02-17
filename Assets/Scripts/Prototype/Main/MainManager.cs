@@ -31,7 +31,9 @@ namespace Prototype_Main
         private AudioSource ShopSound0;
         [SerializeField]
         private AudioSource ShopSound1;
-        
+        [SerializeField]
+        private Text tutoText;
+
         private bool weekwork = false;
 
 
@@ -147,6 +149,20 @@ namespace Prototype_Main
         private void OnTuto()
         {
             UIManager.Instance.tutoPanelToggle();
+        }
+        private void OnTutoD()
+        {
+            UIManager.Instance.tutoPanelToggle();
+            tutoText.text = ("튜토리얼\n\n1.배달해야 할 호수와 택배의 모양을 확인한다. 단 한번만\n확인 할 수 있다!\n\n" +
+            "2.가야하는 층의 버튼을 모두 누른다 하나라도 잘못된 층을 누른다면 움직이지 않는다.\n\n" +
+            "3.택배를 알맞은 곳에 옮긴다.");
+        }
+        private void OnTutoT()
+        {
+            UIManager.Instance.tutoPanelToggle();
+            tutoText.text = ("튜토리얼\n\n1.화면을 좌, 우로 드래그 하는것으로 차선을 바꿀 수 있다.\n뒤로 드래그하여 유지하는 동안은 감속한다!\n\n" +
+            "2.다른 배달부의 근처에 간다면 배달부가 차선을 바꿔서 방해 할 것이다.\n\n" +
+            "3.경찰차의 근처에서는 천천히 이동해야 단속에 걸리지 않는다.");
         }
 
         private void OnGameExitButton()
