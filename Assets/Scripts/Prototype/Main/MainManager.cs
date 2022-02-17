@@ -13,6 +13,7 @@ namespace Prototype_Main
     {
         public static bool Weekwork;
 
+
         [SerializeField]
         private Image AlbaIcon;
         [SerializeField]
@@ -64,6 +65,10 @@ namespace Prototype_Main
 
         private void OnDeliveryStart()
         {
+            if(AlbaIcon.sprite == null){
+                UIManager.Instance.ShowWarning("알바를 선택하지 않았습니다.");
+                return;
+            }
             if (!weekwork)
             {
                 CharacterStat.Hp -= 40;
@@ -103,6 +108,7 @@ namespace Prototype_Main
         private void OnApplyT()
         {
             AlbaIcon.sprite = Together;
+
         }
         private void OnShop()
         {
