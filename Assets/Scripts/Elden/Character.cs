@@ -6,6 +6,8 @@ using System;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject gameoverPanel;
     private int _currentLine = 0;
     private float _speed;
 
@@ -13,6 +15,7 @@ public class Character : MonoBehaviour
     {
         EldenInputManager.Instance.OnSwapScreenV += OnSwapScreenV;
         EldenInputManager.Instance.OnSwapScreenH += OnSwapScreenH;
+        gameoverPanel.SetActive(false);
     }
 
     private void OnSwapScreenH(bool isUp)
@@ -70,5 +73,10 @@ public class Character : MonoBehaviour
         {
             gameObject.transform.position = new Vector2(-Screen.width / 2, gameObject.transform.position.y);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        gameoverPanel.SetActive(true);
     }
 }
