@@ -75,6 +75,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameoverPanel.SetActive(true);
+        if(collision.tag=="Enemy")
+            gameoverPanel.SetActive(true);
     }
 }

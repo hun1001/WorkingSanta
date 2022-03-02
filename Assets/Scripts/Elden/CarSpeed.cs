@@ -17,7 +17,7 @@ public class CarSpeed : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player"){
-            Debug.Log("사고남");
+            Debug.Log("사고남"+gameObject.name+" "+other.gameObject.name);
         }
     }
 }
